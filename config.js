@@ -6,13 +6,22 @@ var path = require('path'),
     config;
 
 config = {
-    // ### Dev
-    // Jomo dev environment
+    // ### PG 
+    // Jomo PG environment
     // This is how you would connect to a postgres DB.  Unfortunately, postgres not
     // supported at this point (0.5)
-    dev: {
+    pg: {
         url: 'http://ghost.netazoic.com',
-        mail: {},
+        mail: {
+		transport: 'SMTP',
+		options:{
+			service: 'Mailgun',
+			auth: {
+				user: 'postmaster@mg.netazoic.com',
+				pass: '9a6a3c4bf321e07f8a4a7349be964059'
+			}
+		}
+	},
         database: {
             client: 'postgresql',
             connection: {
@@ -36,20 +45,16 @@ config = {
         // The url to use when providing links to the site, E.g. in RSS and email.
         url: 'http://ghost.netazoic.com',
 
-        // Example mail config
-        // Visit http://docs.ghost.org/mail for instructions
-        // ```
-        //  mail: {
-        //      transport: 'SMTP',
-        //      options: {
-        //          service: 'Mailgun',
-        //          auth: {
-        //              user: '', // mailgun username
-        //              pass: ''  // mailgun password
-        //          }
-        //      }
-        //  },
-        // ```
+        mail: {
+		transport: 'SMTP',
+		options:{
+			service: 'Mailgun',
+			auth: {
+				user: 'postmaster@mg.netazoic.com',
+				pass: '9a6a3c4bf321e07f8a4a7349be964059'
+			}
+		}
+	},
 
         database: {
             client: 'sqlite3',
