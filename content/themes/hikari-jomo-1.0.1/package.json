@@ -1,7 +1,7 @@
 {
-  "name": "hikari-no-ghost-theme",
-  "version": "1.0.3",
-  "description": "Theme for the Ghost blogging platform",
+  "name": "hikari-jomo",
+  "version": "1.0.1",
+  "description": "Hacked up version of hikari-no-ghost v1.0.3",
   "main": "Gruntfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
