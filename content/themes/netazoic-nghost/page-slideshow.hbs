@@ -1,0 +1,62 @@
+<link rel="stylesheet" href="{{asset "/css/slideshow.css"}}" type="text/css" media="screen" />
+
+{{> slideshow }}
+        
+
+
+<script>
+var slidesA = {
+        
+        'black':{code:'BLACK',caption:'',src:'{{asset  '/images/slide_black.png'}}'},
+        'c_once':{code:'OAUT',caption:'Once Upon a Time',src:'{{asset '/images/slide_once_upon_a_time_800x500.png'}}'},
+        'universum':{code:'UNIV',caption:'Universum',src:'{{asset '/images/slide_001_universum_800x500.jpg'}}'},
+        'c_age_of_discovery':{code:'AOD',caption:'The Age of Discovery',src:'{{asset '/images/slide_age_of_discovery.png'}}'},
+        'c_mystery_replaced':{code:'AOD',caption:'Mystery replaced',src:'{{asset '/images/slide_mystery_replaced.png'}}'},
+        'c_mystery_never_lost':{code:'AOD',caption:'Mystery never really lost',src:'{{asset '/images/slide_mystery_never_lost.png'}}'},
+        'universum_stars':{code:'UNIVS',caption:'Mystery never really lost',src:'{{asset '/images/slide_universum_stars_800x500.jpg'}}'},
+        'stars3':{code:'STARS3',caption:'Starfield 3',src:'{{asset '/images/slide_stars3_800x500.jpg'}}'},
+        'neta_white':{code:'NETAW',caption:'Netazoic',src:'{{asset '/images/slide_netazoic_white.png'}}'},
+        'neta_trans':{code:'NETATR',caption:'Netazoic',src:'{{asset '/images/slide_netazoic_trans_800x500.png'}}'}
+};
+
+
+
+
+var frames = [
+       {id: 'frame1', img: 'black',opacity:1,duration:100,scale:1.0,x:0,y:0 },
+       {id: 'frame2', img: 'c_once',opacity:1,duration:300,scale:1.0,x:0,y:0, class:'caption',delay:200 },
+       {id: 'frame3',img: 'universum',opacity:1,duration:200,scale:1.1,x:0,y:0 },
+       {id: 'frame4',img: 'universum',opacity:1,duration:400,scale:1.1,x:10,y:10, delay:300},
+       {id: 'frame4.1', img: 'c_once',opacity:0,duration:200,scale:1.0,delay:10 },
+       {id: 'frame5.0',img: 'c_age_of_discovery',opacity:1,duration:400,scale:1,x:0,y:0, class:'caption',delay:20 },
+       {id: 'frame5.1',img: 'universum',opacity:1,duration:400,scale:1.2,x:40,y:40},
+       {id: 'frame5.2',img: 'c_age_of_discovery',opacity:0,duration:200,scale:1,x:0,y:0, class:'caption',delay:10 },
+       {id: 'frame5.4',img: 'c_mystery_replaced',opacity:1,duration:300,scale:1,x:0,y:0, class:'caption' },
+       {id: 'frame7.2',img: 'universum',opacity:0,duration:10,scale:1,x:0,y:0  },
+       {id: 'frame5.1.1',img: 'universum_stars',opacity:0,duration:1,scale:1.1},
+       //{id: 'frame5.1.1',img: 'universum_stars',opacity:1,duration:400,scale:1,delay:40},
+       {id: 'frame6',img: 'stars3',opacity:1,duration:200,scale:1.1,x:0,y:0,delay:20 },
+       {id: 'frame5.1',img: 'c_mystery_replaced',opacity:0,duration:100,scale:1,delay:280},   
+       {id: 'frame5.2',img: 'c_mystery_never_lost',opacity:1,duration:400,scale:1,class:'caption'},
+       {id: 'frame5.2',img: 'c_mystery_never_lost',opacity:0,duration:300,scale:1,class:'caption',delay:300},
+       {id: 'frame6.1',img: 'neta_white',opacity:.5,duration:200,scale:1,x:0,y:0, class:'caption' },
+
+       {id: 'frame7.2',img: 'stars3',opacity:0,duration:100,scale:1,x:0,y:0 },
+       {id: 'frame5.1.1',img: 'universum_stars',opacity:1,duration:400,scale:1,delay:10},
+
+       {id: 'frame7.1',img: 'neta_white',opacity:0,duration:10,scale:.1,x:100,y:100, class:'caption' },
+       {id: 'frame7.1',img: 'neta_white',opacity:.5,duration:300,scale:.1,x:-200,y:-200, class:'caption',delay:300 },
+       {id: 'frame7.1',img: 'neta_white',opacity:0,duration:10,scale:.1, x:-200,y:-200, class:'caption' },
+
+       {id: 'frame77.3',img: 'black',opacity:1,duration:400,scale:1,x:0,y:0 }
+
+       
+ 
+           ];
+           
+ //Start the show
+    setSlideControls();       
+    runFrames(0,0);
+
+</script>
+

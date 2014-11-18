@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {{! Document Settings }}
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    {{! Page Meta }}
+    <title>{{meta_title}}</title>
+    <meta name="description" content="{{meta_description}}" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="{{asset "favicon.ico"}}">
+
+    {{! Styles'n'Scripts }}
+    <link rel="stylesheet" type="text/css" href="{{asset "css/main.css"}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset "css/slideshow.css"}}" />
+
+    {{! Ghost outputs important style and meta data with this tag }}
+    {{ghost_head}}
+</head>
+
+<body class="{{body_class}}">
+	<div id="outside_container">
+
+		<div id="container">
+	<header class="main-header"  {{#if @blog.cover}}style="background-image: url({{@blog.cover}})"{{/if}}>
+
+	<div id="divLogo">
+    	{{#if @blog.logo}}<a href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="logo" /></a>{{/if}}
+    </div>
+    {{! Comment this if you are not using static pages }}
+    {{> menu}}
+
+	</header>
+ 	<div id="panel" style="display:none;">
+	{{> slideshow}}
+	</div>
+{{! The main content area on the homepage }}
+
+    {{! Everything else gets inserted here }}
+	    <div id="content">
+	    {{{body}}}
+	    </div>
+   	</div>
+
+
+	</div>
+
+
+	{{> footer}}
+
+    {{! Ghost outputs important scripts and data with this tag }}
+    {{ghost_foot}}
+
+    {{! syntax highlighting }}
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+
+    {{! video responsive resizing}}
+    <script type="text/javascript" src="{{asset "js/jquery.fitvids.js"}}"></script>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="{{asset "/js/velocity/velocity.min.js"}}"></script>
+	<script type="text/javascript" src="{{asset "/js/njs/njq.js"}}"></script>
+	<script type="text/javascript" src="{{asset "/js/vslideshow.js"}}"></script>
+	
+	<script>
+
+	$(window).load(function() {
+		var slideshow = $("#slideshow-loader");
+		var slide = $("#slide-loader");
+		
+		if(slide[0] != null){
+			  $("#slideshow").html(slide.html());
+  			  $("#panel").show(400);
+			  $("#slideshow img").css({opacity:1});
+
+		}
+
+		else{
+			$("#panel").hide();
+		}
+
+	});
+	
+		setSlideControls();  
+		
+		//$("#img-main").velocity({opacity:1,duration:600});
+		//$("#panel").click(startTheShow);
+		$("#nextSlide").click(startTheShow);
+
+
+           
+	 //Start the show
+	 function startTheShow(){
+	 	$("#panel").load("/slideshow/");
+	 	$("#panel").show(400);
+	 }
+
+</script>
+
+
+
+	</script>
+	
+</body>
+</html>
