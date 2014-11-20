@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" class="dj_webkit dj_chrome dj_contentbox"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta http-equiv="x-ua-compatible" content="IE=edge">
+
+<title>Netazoic Calendars</title>
+
+
+<script type="text/javascript" src="./Calendar_files/cjs.js"></script>
+
+<script type="text/javascript" src="./Calendar_files/util.js"></script>
+<script type="text/javascript" src="./Calendar_files/cal.js"></script>
+
+
+
+<link rel="StyleSheet" type="text/css" media="all" href="./Calendar_files/mi_base.css">
+<link rel="StyleSheet" type="text/css" media="all" href="./Calendar_files/efast.css">
+<link rel="StyleSheet" type="text/css" media="all" href="./Calendar_files/util.css">
+<link rel="StyleSheet" type="text/css" media="all" href="./Calendar_files/table.css">
+<link rel="StyleSheet" type="text/css" media="all" href="./Calendar_files/cal.css">
+<link rel="StyleSheet" type="text/css" media="all" href="./Calendar_files/icons.css">
+
+
+
+<!--[if IE]>
+<style type="text/css">
+/* place css fixes for all versions of IE in this conditional comment */
+body {
+   behavior: url("/css/CAL/csshover3.htc");
+}
+.twoColLiqLtHdr #sidebar1 { padding-top: 30px; }
+.twoColLiqLtHdr #mainContent { zoom: 1; padding-top: 15px; }
+/* the above proprietary zoom property gives IE the hasLayout it needs to avoid several bugs */
+</style>
+<![endif]-->
+
+<body class="twoColLiqLtHdr tundra">
+<div id="container">
+<header>
+</header>
+
+<script type="text/javascript" src="./Calendar_files/calendarmgr.js"></script>
+<script type="text/javascript">
+	calendarID = 100217;
+	flgNeedsSetup = '';
+	flgMode = 'VIEW';
+</script>
+<!--  JQuery -->
+<script src="./Calendar_files/jquery-1.9.1.js"></script>
+
+
+<!-- JQuery UI -->
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css">
+<script src="./Calendar_files/jquery-ui.js"></script>
+
+<!--  JQuery TimePicker -->
+<link rel="stylesheet" href="./Calendar_files/jquery-timepicker.css">
+<script src="./Calendar_files/jquery.timepicker.js"></script>
+
+
+<!--  Moment -->
+    <script src="./Calendar_files/moment.2.1.0.js"></script> 
+<!--  FullCalendar -->
+    <link href="./Calendar_files/fullcalendar.css" rel="stylesheet"> 
+    <link href="./Calendar_files/fullcalendar.print.css" rel="stylesheet" media="print">
+    <script src="./Calendar_files/fullcalendar.js"></script> 
+<!--End: /usr/tomcat/webapps/efast/java/www/WEB-INF/templates/CAL/Calendar/include/fullcalendar.ctp-->
+
+
+<div id="mainCalendar">
+<table border="0" cellpadding="0" cellspacing="0" width="96%" style="margin:5px auto;">
+  <tbody><tr>
+    <td><h1>Calendar Manager</h1></td>
+  </tr>
+  <tr>
+    <td>
+
+<!-- Calendar Summary -->
+<style>
+fieldset {border:1px solid #666666; margin: 5px 25px 5px 25px;  -moz-border-radius: 5px; -webkit-border-radius: 5px; -webkit-box-shadow: rgba(0,0,0,0.5) 2px 2px 2px; -moz-box-shadow: rgba(0,0,0,0.5) 2px 2px 2px; padding:10px;}
+legend {color:#000000; cursor:pointer; font-family:Georgia, 'Times New Roman', Times, serif; font-size:16px; font-weight:bold; outline:none; padding:4px 6px;}
+#fsIcon {padding-right:4px;}
+
+.fsHeading {font-family:Verdana, Arial, Helvetica, sans-serif;}
+.tdLeft		{padding:2px 5px; text-align:left;}
+.tdRight	{padding:2px 5px; text-align:right;}
+
+dt {border: 1px solid #000; display: inline-block; float:left; height: 16px; overflow: hidden; width: 16px; }
+dd {font-family:Verdana, Arial, Helvetica, sans-serif;  margin:0; }
+</style>
+
+<script>
+	var fsOpen=true;
+	var fsCalendarSum = 'fsCalendarSum';
+	var calendarTypeCode = 'CLAR2013v1';
+	var calendarReference = "Lake Arrowhead Things To Do";
+	var calendarID = '100217';
+
+</script>
+
+
+<!--Begin: /usr/tomcat/webapps/efast/java/www/WEB-INF/templates/CAL/CalendarMgr/include/CommandBar_CalendarMgr.ctp-->
+<link rel="stylesheet" type="text/css" href="./Calendar_files/commandBar.css">
+<script type="text/javascript">
+var calendarID = '100217';
+</script>
+
+
+<link rel="StyleSheet" type="text/css" media="all" href="./Calendar_files/sitemapLayout.css">
+
+
+
+<div class="sitemap">
+
+
+<script> 
+	$(document).ready(function() {
+	
+		var date = new Date();
+		var ts = date.getTime();
+		var d = date.getDate();
+		var m = date.getMonth();
+		var y = date.getFullYear();
+		
+		calendar =  $('#calendar');
+
+		calendar.fullCalendar({
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,agendaWeek,agendaDay'
+			},
+		    date: d,
+		    month: m,
+		    year: y,
+			editable: true,
+			events: './Calendar_files/sample_events.json',
+			events_foo: {
+				url:'./Calendar_files/sample_events.json',
+		        eventDataTransform: fixEventSend
+		        //color: 'yellow',   // a non-ajax option
+		        //textColor: 'black' // a non-ajax option
+
+		    },
+		    ignoreTimezone: true,
+            selectable: true,
+	        selectHelper: true,
+	        select: selectHdlr,
+	        dayClick: dayClickHdlr,
+	        eventClick:editFCEvent,
+	        //dayClick:contextMenu,
+	        eventRender: function(event, element) {
+                //element.bind('contextmenu', editFCEvent);
+             },
+             eventDrop: dropHdlr,
+             eventResize: resizeHdlr
+		});
+		
+	
+	});
+
+</script>
+<style>
+#calendar {
+	width: 100%;
+	margin: 40px auto 5px auto;
+}
+</style>
+<link href="/lib/fc-evtmgr/event.css" rel="stylesheet" type="text/css">
+
+
+<div id="calendar" class="fc fc-ltr">
+
+<div id="eventEdit" style="display: none;"></div>
+<div id="eventCreate" style="display: none;"></div>
+<script type="text/javascript" src="/lib/fc-evtmgr/evtmgr.js"></script>
+<script type="text/javascript" src="/lib/njs/njq.js"></script>
+<script>
+ calendarID = 100217
+ //evtCategoryData  = [{"categorydesc":null,"cdfname":"Hotel Events","cdfdesc":null,"categorycode":"STYLE02","classname":"eventSTYLE02","categoryname":"Hotel Events","calendarid":"100217","efcalendarid":"100211"},{"categorydesc":null,"cdfname":"Lake Arrowhead Community Events","cdfdesc":null,"categorycode":"STYLE06","classname":"eventSTYLE06","categoryname":"Lake Arrowhead Community Events","calendarid":"100217","efcalendarid":"100211"}];
+ recurrenceRuleData = '';
+</script>
+
+
+
+<!--End: /usr/tomcat/webapps/efast/java/www/WEB-INF/templates/CAL/Calendar/FullCalendar_json.ctp-->
+
+		</div>
+	
+
+
+ <!--  /mainContent -->
+<!--Begin: /usr/tomcat/webapps/efast/java/www/WEB-INF/templates/CAL/include/Footer.ctp-->
+	<!-- This clearing element should immediately follow the #mainContent div in order to force the #container div to contain all child floats --><br class="clearfloat">
+  <div id="footer">
+    <br>
+  <!-- end #footer --></div>
+<!-- end #container -->
+
+<!--End: /usr/tomcat/webapps/efast/java/www/WEB-INF/templates/CAL/include/Footer.ctp-->
+
+<div id="divEventNodeTemplate" style="display:none;">
+	<!--Begin: /usr/tomcat/webapps/efast/java/www/WEB-INF/templates/CAL/CalendarMgr/include/EventNode.ctp-->
+	<a id="{mprecID}" class="{pgStatusCode}" href="javascript:goVisEditor('{mprecID}')" name="{mprecID}">{pgtitle}</a>
+<!--End: /usr/tomcat/webapps/efast/java/www/WEB-INF/templates/CAL/CalendarMgr/include/EventNode.ctp-->
+
+</div>
+    </td>
+  </tr>
+</tbody></table>
+
+
+</div>
+</div>
+</body>
+</html>
+

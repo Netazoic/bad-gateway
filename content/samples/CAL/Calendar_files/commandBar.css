@@ -1,0 +1,19 @@
+
+#cmdFieldSet{
+	border:1px solid #666666; 
+	margin:5px 25px; 
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px; 
+	-webkit-box-shadow: rgba(0,0,0,0.5) 2px 2px 2px; 
+	-moz-box-shadow: rgba(0,0,0,0.5) 2px 2px 2px; 
+	padding:5px 10px;
+}
+#cmdLegend{
+	color:#000000; 
+	font-family:Georgia, 'Times New Roman', Times, serif; 
+	font-size:20px; 
+	padding:0px;
+}
+#divCmdButton{
+	float:right;
+	}
