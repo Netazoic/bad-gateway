@@ -51,6 +51,8 @@
 
 
 	{{> footer}}
+	
+	<div id="sample" style="display:none;">samples go here</div>
 
     {{! Ghost outputs important scripts and data with this tag }}
     {{ghost_foot}}
@@ -60,7 +62,9 @@
 
     {{! video responsive resizing}}
     <script type="text/javascript" src="{{asset "js/jquery.fitvids.js"}}"></script>
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="{{asset "js/netazoic.js"}}"></script>
+    <scriptx src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.min.js"></script>
 	<script src="{{asset "/js/velocity/velocity.min.js"}}"></script>
 	<script type="text/javascript" src="{{asset "/js/njs/njq.js"}}"></script>
 	<script type="text/javascript" src="{{asset "/js/vslideshow.js"}}"></script>
@@ -85,24 +89,16 @@
 	});
 	
 		setSlideControls();  
-		
-		//$("#img-main").velocity({opacity:1,duration:600});
-		//$("#panel").click(startTheShow);
 		$("#nextSlide").click(startTheShow);
 
 
            
-	 //Start the show
-	 function startTheShow(){
-	 	$("#panel").load("/slideshow/");
-	 	$("#panel").show(400);
-	 }
+
+	 
 
 </script>
 
 
 
-	</script>
-	
 </body>
 </html>

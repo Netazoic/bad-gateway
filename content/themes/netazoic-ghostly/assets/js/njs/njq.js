@@ -77,6 +77,28 @@ var njq = (function (parent, $) {
 		});
 	};
 	
+	my.popWindow = function(url, id, h, w, screenX, screenY, location, statusbar) {
+		day = new Date();
+		if (id == null) {
+			id = day.getTime();
+		}
+		pageID = "page" + id;
+		var s = "window.open(url, '"
+				+ id
+				+ "', 'toolbar=0,scrollbars=1,location=0,statusbar=0,menubar=0,resizable=1,titlebar=1"
+				+ ",width=" + w + ",height=" + h + ",left=" + screenX + ",top="
+				+ screenY + "');";
+		// console.debug(s);
+		// eval(pageID + " = " + s);
+		var newWin = eval(s);
+		if(!newWin){
+			//alert("Could not open a new window. Please allow your browser to open pop-up windows for this website.");
+			return false;
+		}
+		newWin.focus();
+		return newWin;
+	};
+	
 	my.qsVal = function(key) {
 		//Thanks http://stackoverflow.com/users/361684/gilly3
 		key = key.replace(/[*+?^$.\[\]{}()|\\\/]/g, "\\$&"); // escape RegEx meta chars
