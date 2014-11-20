@@ -12,3 +12,6 @@ package.json
 PRIVACY.md
 content/images
 config.js
+.project
+conf/config.dev
+conf/config.prd
