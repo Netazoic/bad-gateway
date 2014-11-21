@@ -14,3 +14,5 @@ config.js
 conf/config.dev
 conf/config.prd
 content/themes/casper
+content/themes/hikari-no-ghost-theme-1.0.3/
+content/data/netazoic-dev.db.bak
