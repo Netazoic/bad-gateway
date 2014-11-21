@@ -6,6 +6,7 @@
 <main >
     {{#post}}
         <article class="{{post_class}} single">
+   		<div class="{{post_class}}" >
          {{#has tag="nav"}}
         	{{! no titles no nav pages}}
         {{else}}
@@ -14,7 +15,7 @@
         </header>        
         {{/has}}
         {{! Everything inside the #post tags pulls data from the post }}
-		<div class="{{post_class}}" >
+
         {{content}}
         </div>
 

@@ -13,9 +13,10 @@ body {
 	/*background:url(images/background_main.jpg) no-repeat;*/
 	/*min-height:800px;*/
 	width:100%;
-	max-width:1000px;
+	/*max-width:1000px;*/
 	position:relative;
 }
+
 header.main-header, .main-header{
 	padding-left:7%;
 	margin-top:40px;
@@ -105,7 +106,7 @@ nav#menu.menu-right li {
 	float:left;
 	clear:left;
 	padding-left:7%;
-	max-width:815px;
+	/*max-width:815px;*/
 	min-width:233px;
 	width:87%;
 	color:#B8BEC4;
@@ -128,6 +129,9 @@ nav#menu.menu-right li {
 .column3 { float:left; width:30%; min-width:140px;  }
 
 .column1.home{padding-top:20px;}
+.column1-nimg{background-size:cover;
+	width:170px;
+	min-height:160px;}
 .column2.home{ width:60%;}
 
 #content h2 {
@@ -189,6 +193,7 @@ footer span {
 	float:left;
 	width:250px;
 }
+footer .subtitle{margin-top:7px;}
 
 footer.main-footer {
 	border-top:1px solid #3f2324;
@@ -211,14 +216,14 @@ header.main-header a, footer a {
 header.main-header a:hover, footer a:hover { color:#ffffff; }
 
 
-a.work-link img, .work-img{width:75px; height:75px;overflow:hidden;}
+
 
 /*
 	General Styles
 */
-
+a.work-link img, .work-img{width:75px; height:75px;overflow:hidden;}
 a img { border:0px }
-footer .subtitle{margin-top:7px;}
+
 .credits{float:left;clear:left;margin-top:15px;
 font-size:.75em;}
 
@@ -233,10 +238,21 @@ article.page img.img-left{float:left;}
 /*article.page h2{border-bottom:.11px solid #D1D1D1;padding-bottom:5px;}*/
 
 /* code-sample pages */
+#if-sample{width:1000px;height:800px;}
 article.page div.page.tag-code-sample{border:0px;padding:0px; width:100%}
 body.tag-code-sample #container{max-width:none;}
-#if-sample{width:1000px;height:800px;}
 
-.column1-nimg{background-size:cover;
-	width:170px;
-	min-height:160px;}
+/* POST classes */
+div.post img{max-width:100%}
+div.post.tag-projects{
+	background:white;
+	color:black;
+    box-shadow: 10px 10px 5px #888888;
+	padding:10px;}
+#content div.post.tag-projects {font-size:1.2em;}
+#content div.post.tag-projects a{color: #888888;font-weight:bold;}
+#content div.post.tag-projects a:hover{color:black;}
+#content div.post.tag-projects header h2{color:black;float:right;font-size:2em;margin-top:20px;}
+
+	
+}
