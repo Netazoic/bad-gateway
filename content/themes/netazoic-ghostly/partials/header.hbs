@@ -1,0 +1,8 @@
+	<header class="main-header"  {{#if @blog.cover}}style="background-image: url({{@blog.cover}})"{{/if}}>
+
+	<div id="divLogo">
+    	{{#if @blog.logo}}<a href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="logo" /></a>{{/if}}
+    </div>
+	<div id="divTitle">BAD GATEWAY</div>
+    {{> menu}}
+	</header>

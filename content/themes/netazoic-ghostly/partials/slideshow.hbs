@@ -1,14 +1,3 @@
-<div id="slideshow-controls" style="display:block;">
-	<button id="btnPauseSlides" value="||">||</button>
-	<button id="btnStartSlidesN" onclick="startTheShow();" value=">" >></button>
-	<button id="btnRestartSlides" value="x" class="img-ctrl">X</button>
-</div>
+{{> slideshow_controls}}
 <div id="slideshow"></div>
 
-<script>
-//Start the show
-function startTheShow(){
-	$("#panel").load("/slideshow/");
-	$("#panel").show(400);
-}
-</script>

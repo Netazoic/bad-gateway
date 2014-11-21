@@ -71,6 +71,9 @@ function setSlideControls(){
 	$("#btnRestartSlides").click(function(){
 		restartSlides();
 	});
+	$("#btnHideSlideShow").click(function(){
+		hideSlideShow();
+	});
 	
 	$("#panel").hover(showSlideControls,hideSlideControls);
 
@@ -149,6 +152,14 @@ function startSlides(){
 	runFrames(frameCt);
 }
 
+//Start the show
+function startTheShow(){
+	$(".slideshow-controls").hide();
+	$("#panel").load("/slideshow/");
+	$("#panel").show(400);
+	$("#btnHideSlideShow").show();
+}
+
 function restartSlides(){
 	//for now restart at 0
 	pauseSlide();
@@ -163,6 +174,11 @@ function previousSlide(){
 	runFrames(frameCt);
 }
 
+function hideSlideShow(){
+	$("#panel").hide(400);
+	$("#btnHideSlideShow").hide(200);
+	$(".slideshow-controls").show(200);
+}
 function runSlide(slide, duration, scale, opc, x,y,z, callBack,delay) {
     $(slide)
 

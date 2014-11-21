@@ -26,15 +26,7 @@
 	<div id="outside_container">
 
 		<div id="container">
-	<header class="main-header"  {{#if @blog.cover}}style="background-image: url({{@blog.cover}})"{{/if}}>
-
-	<div id="divLogo">
-    	{{#if @blog.logo}}<a href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="logo" /></a>{{/if}}
-    </div>
-    {{! Comment this if you are not using static pages }}
-    {{> menu}}
-
-	</header>
+{{> header}}
  	<div id="panel" style="display:none;">
 	{{> slideshow}}
 	</div>
@@ -68,6 +60,7 @@
 	<script src="{{asset "/js/velocity/velocity.min.js"}}"></script>
 	<script type="text/javascript" src="{{asset "/js/njs/njq.js"}}"></script>
 	<script type="text/javascript" src="{{asset "/js/vslideshow.js"}}"></script>
+	<script type="text/javascript" src="/js/ghostly.js"></script>
 	
 	<script>
 
@@ -85,15 +78,14 @@
 		else{
 			$("#panel").hide();
 		}
+		
+		setSlideControls();  
+		var posts = getPosts();
+		console.debug(posts);
+		
 
 	});
 	
-		setSlideControls();  
-		$("#nextSlide").click(startTheShow);
-
-
-           
-
 	 
 
 </script>
