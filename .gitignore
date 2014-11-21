@@ -1,4 +1,4 @@
-bower.json config.example.js config.js content core Gruntfile.js index.js LICENSE node_modules package.json PRIVACY.md README.md
+bower.json config.example.js config.js  core Gruntfile.js index.js LICENSE node_modules package.json PRIVACY.md 
 Gruntfile.js
 LICENSE
 README.md
@@ -14,3 +14,5 @@ config.js
 conf/config.dev
 conf/config.prd
 content/themes/casper
+lib/ghost/ghost-0.5.5.zip
+npm-debug.log
