@@ -18,9 +18,10 @@ function fixSamples(){
  	});	
 }
 
-//Start the show
-function startTheShow(){
- 	$("#panel").load("/slideshow/");
- 	$("#panel").show(400);
- }
+
+
+
+function goSlideInfo(){
+	document.location="/universum#info"
+}
 

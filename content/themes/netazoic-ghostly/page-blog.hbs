@@ -6,23 +6,11 @@
    //JM: Hacked up tag-limiter for the posts collection
   tagLimiter="blog"
 </script>
-{{> slideshow_controls}}
 
 {{! The main content area on the homepage }}
 <main>
     {{! Each post will be output using this markup }}
     {{#foreach posts}}
-
-		<div class="column1 home">
-		{{#if image}}
-		    <a href="{{url}}">
-		    <div class="column1-nimg" style="background-image: url({{image}})"></div>
-		    </a>
-		{{else}}&nbsp;
-		{{/if}}
-	 </div>
-	 
-	<div class="column2 home">
 
     <article class="{{post_class}}">
         <header>
@@ -37,28 +25,9 @@
             </p>
         </footer>
     </article>
-	</div> <!-- /column2 -->
+
     {{/foreach}}
+
     {{!! After all the posts, we have the previous/next pagination links }}
-	<div class="column1 home">&nbsp;</div>
-	<div class="column2 home">
-	    {{pagination}}
-    </div>
+    {{pagination}}
 </main>
-
-
-
-
-<script src="/js/ghostly.js"/>
-
-<script>
-		
-
-
-function goHome(){
-	if(true){exit;}
-	document.location = "/home";
-	}
- </script>
- </body>
-</html>
