@@ -1,17 +1,20 @@
     <footer class="main-footer">
         <div>
- 			<img src="{{asset "images/Netazoic_logo_footer.png"}}" /> 
+
  				<span id="footer=text">
+ 				        {{@blog.title}}
  				    <div><span class="subtitle">{{@blog.description}}</span></div>
 
 				</span>
 		 </div>
 		 <nav id="menu" class="menu-right">
 				<a href="http://github.org/Netazoic">Github</a>, 
-				<a href="http://bg.netazoic.com">Some blogging</a>
+				<br>
+        		Powered by <a href="https://ghost.org">Ghost</a> and <a href="https://github.com/Netazoic/ghostly">Netazoic-ghostly</a>.
 		 </nav>
 
-        <div class="credits">&copy; {{date format="YYYY"}} {{@blog.title}}. All rights reserved.<br>
-        Powered by <a href="https://ghost.org">Ghost</a> and <a href="https://github.com/Netazoic/nghost-theme">nGhost</a>.
+        <div class="credits">
+        <img src="{{asset "images/Netazoic_logo_footer.png"}}" style="height:2.0em;"  />
+        &copy; {{date format="YYYY"}}. All rights reserved.
 		</div>
     </footer>
