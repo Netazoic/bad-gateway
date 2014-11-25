@@ -65,13 +65,29 @@
 	<script>
 
 	$(window).load(function() {
-		var slideshow = $("#slideshow-loader");
+		//var slideshow = $("#slideshow-loader");
 		var slide = $("#slide-loader");
-		
+
 		if(slide[0] != null){
-			  $("#slideshow").html(slide.html());
-  			  $("#panel").show(400);
-			  $("#slideshow img").css({opacity:1});
+		  $("#slideshow").hide();
+  		  setSlideControls();  
+		  var flgLoad = slide.attr("data-flgLoad");
+		  $("#slideshow").html(slide.html());
+		  $("#slideshow img").css({opacity:1});
+			
+		  if(flgLoad=="false"){
+	  		  	  hideSlideShow();
+	  		  	  $("#panel").show();
+	  		  	  $("#slideshow").show(1400);
+
+		  }
+		  else{
+				  $("#slideshow").html(slide.html());
+				  $("#slideshow").show();
+	  			  $("#panel").show(400);
+				  $("#slideshow img").css({opacity:1});
+	
+		 }
 
 		}
 
@@ -79,10 +95,9 @@
 			$("#panel").hide();
 		}
 		
-		setSlideControls();  
+
 		var posts = getPosts();
 		console.debug(posts);
-		
 
 	});
 	

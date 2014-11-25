@@ -26,6 +26,12 @@
 	z-index:1000;
 	position:absolute;
 }
+#slideshow-hider{
+	display:none;
+	z-index:1000;
+	position:absolute;
+	right:0px;
+}
 #slideshow img{
 	position:absolute;
 	top:0;

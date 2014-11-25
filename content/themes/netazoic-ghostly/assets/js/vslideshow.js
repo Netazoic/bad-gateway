@@ -75,7 +75,6 @@ function setSlideControls(){
 		hideSlideShow();
 	});
 	
-	$("#panel").hover(showSlideControls,hideSlideControls);
 
 };
 
@@ -154,10 +153,14 @@ function startSlides(){
 
 //Start the show
 function startTheShow(){
-	$(".slideshow-controls").hide();
+	$("#panel").css("padding-bottom","56.25%");
+	$(".slideshow-controls").hide(400);
+	$("#slideshow img").velocity({opacity:0},{duartion:400})
 	$("#panel").load("/slideshow/");
+	$('#panel').css("border","7px solid white");
 	$("#panel").show(400);
-	$("#btnHideSlideShow").show();
+	$("#panel").hover(showSlideControls,hideSlideControls);
+
 }
 
 function restartSlides(){
@@ -175,9 +178,13 @@ function previousSlide(){
 }
 
 function hideSlideShow(){
-	$("#panel").hide(400);
-	$("#btnHideSlideShow").hide(200);
+	$("#slideshow").hide(400);
+	$("#panel").css("padding-bottom","0px");
+	$("#slideshow-hider").hide(200);
 	$(".slideshow-controls").show(200);
+	$('#panel').unbind('mouseenter mouseleave');
+	$('#panel').css("border","0px");
+
 }
 function runSlide(slide, duration, scale, opc, x,y,z, callBack,delay) {
     $(slide)
@@ -217,12 +224,12 @@ var scaleSlide = function (slide, duration, scale, opc) {
 
 function showSlideControls(){
 
-	var foo = $("#slideshow-controls");
+	var foo = $("#slideshow-controls,#slideshow-hider");
 	foo.show(400);
 	//foo.velocity({opacity:1,duration:200});
 }
 function hideSlideControls(){
-	var foo = $("#slideshow-controls");
+	var foo = $("#slideshow-controls,#slideshow-hider");
 	foo.hide(400);
 	//foo.velocity({opacity:0,duration:200});
 }
