@@ -1,0 +1,15 @@
+#disqus_thread{
+	float:left;
+	clear:left;
+	padding-left:10%;
+	/*max-width:815px;*/
+	min-width:233px;
+	width:80%;
+	color:#B8BEC4;
+	/*color:#674f5d;*/
+	font-size:1em;
+	line-height:1.5em;
+	margin-top:10px;
+	}
+
+body.dark #footer{display:none;}
