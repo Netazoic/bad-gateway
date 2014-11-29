@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset "css/main.css"}}" />
     <link rel="stylesheet" type="text/css" href="{{asset "css/slideshow.css"}}" />
 
+
     {{! Ghost outputs important style and meta data with this tag }}
     {{ghost_head}}
 </head>
@@ -36,12 +37,15 @@
 	    <div id="content">
 	    {{{body}}}
 	    </div>
-   	</div>
 
 
-	</div>
 
 
+{{> disqus}}
+
+   	  </div>
+    
+ 	</div> </-- end of outside container -->
 	{{> footer}}
 	
 	<div id="sample" style="display:none;">samples go here</div>
@@ -77,7 +81,7 @@
 			
 		  if(flgLoad=="false"){
 	  		  	  hideSlideShow();
-	  		  	  $("#panel").show();
+	  		  	  $("#panel").show(400);
 	  		  	  $("#slideshow").show(1400);
 
 		  }
