@@ -133,7 +133,7 @@ nav#menu.menu-right li {
 	width:170px;
 	min-height:160px;}
 .column2.home{ width:60%;}
-
+.column1-nimg.post{float:left; margin:10px;}
 #content h2 {
 	font-family:Georgia, "Times New Roman", Times, serif;
 	color:#dbaa70;
@@ -258,7 +258,7 @@ div.post.tag-projects{
 pre {
 	margin: 1.6em 0;
 	background: #f1f0ea;
-	width: 100%;
+	/*width: 100%;*/
 	padding: 10px;
 	font-family: monospace;
 	font-size: 0.9em;
