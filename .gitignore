@@ -16,3 +16,5 @@ conf/config.prd
 content/themes/casper
 lib/ghost/ghost-0.5.5.zip
 npm-debug.log
+content/themes/hikari-no-ghost-theme-1.0.3/
+content/data/netazoic-dev.db
