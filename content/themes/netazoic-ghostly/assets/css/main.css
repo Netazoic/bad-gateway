@@ -252,7 +252,7 @@ div.post.tag-projects{
 #content div.post.tag-projects {font-size:1.2em;}
 #content div.post.tag-projects a{color: #888888;font-weight:bold;}
 #content div.post.tag-projects a:hover{color:black;}
-#content div.post.tag-projects header h2{color:black;float:right;font-size:2em;margin-top:20px;}
+#content div.post.tag-projects header h2{color:black;float:left;font-size:2em;margin-top:20px;}
 
 /* Code and Quotes */
 pre {
