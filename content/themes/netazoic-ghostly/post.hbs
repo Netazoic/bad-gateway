@@ -15,7 +15,9 @@
         </header>        
         {{/has}}
         {{! Everything inside the #post tags pulls data from the post }}
-
+        {{#if image}}
+	    <div class="column1-nimg post" style="background-image: url({{image}})"></div>
+	    {{/if}}
         {{content}}
         </div>
 
