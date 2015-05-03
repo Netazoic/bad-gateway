@@ -17,7 +17,7 @@ app = new EmberApp({
     outputPaths: {
         app: {
             js: assetLocation('ghost.js')
-//          css: see config/environment.js (sassOptions)
+            // css: see config/environment.js (sassOptions)
         },
         vendor: {
             js:  assetLocation('vendor.js'),
@@ -42,7 +42,7 @@ app.import('bower_components/showdown-ghost/src/extensions/footnotes.js');
 app.import('bower_components/showdown-ghost/src/extensions/highlight.js');
 app.import('bower_components/moment/moment.js');
 app.import('bower_components/keymaster/keymaster.js');
-app.import('bower_components/device/lib/device.js');
+app.import('bower_components/devicejs/lib/device.js');
 app.import('bower_components/jquery-ui/ui/jquery-ui.js');
 app.import('bower_components/jquery-file-upload/js/jquery.fileupload.js');
 app.import('bower_components/fastclick/lib/fastclick.js');
@@ -52,5 +52,13 @@ app.import('bower_components/ember-simple-auth/simple-auth-oauth2.js');
 app.import('bower_components/google-caja/html-css-sanitizer-bundle.js');
 app.import('bower_components/nanoscroller/bin/javascripts/jquery.nanoscroller.js');
 app.import('bower_components/jqueryui-touch-punch/jquery.ui.touch-punch.js');
+app.import('bower_components/codemirror/lib/codemirror.js');
+app.import('bower_components/codemirror/lib/codemirror.css');
+app.import('bower_components/codemirror/theme/xq-light.css');
+app.import('bower_components/codemirror/mode/htmlmixed/htmlmixed.js');
+app.import('bower_components/codemirror/mode/xml/xml.js');
+app.import('bower_components/codemirror/mode/css/css.js');
+app.import('bower_components/codemirror/mode/javascript/javascript.js');
+app.import('bower_components/xregexp/xregexp-all.js');
 
 module.exports = app.toTree();

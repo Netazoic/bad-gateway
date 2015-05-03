@@ -1,5 +1,6 @@
 import Ember from 'ember';
 var SettingsController = Ember.Controller.extend({
+
     needs: ['feature'],
 
     showGeneral: Ember.computed('session.user.name', function () {
@@ -14,14 +15,17 @@ var SettingsController = Ember.Controller.extend({
     showNavigation: Ember.computed('session.user.name', function () {
         return this.get('session.user.isAuthor') || this.get('session.user.isEditor') ? false : true;
     }),
-    showCodeInjection: Ember.computed('session.user.name', 'controllers.feature.codeInjectionUI', function () {
-        return this.get('session.user.isAuthor') || this.get('session.user.isEditor') || !this.get('controllers.feature.codeInjectionUI') ? false : true;
+    showCodeInjection: Ember.computed('session.user.name', function () {
+        return this.get('session.user.isAuthor') || this.get('session.user.isEditor') ? false : true;
     }),
     showLabs: Ember.computed('session.user.name', function () {
         return this.get('session.user.isAuthor')  || this.get('session.user.isEditor') ? false : true;
     }),
     showAbout: Ember.computed('session.user.name', function () {
         return this.get('session.user.isAuthor') ? false : true;
+    }),
+    showPassProtection: Ember.computed('session.user.name', 'controllers.feature.passProtectUI', function () {
+        return this.get('session.user.isAuthor') || this.get('session.user.isEditor') || !this.get('controllers.feature.passProtectUI') ? false : true;
     })
 });
 

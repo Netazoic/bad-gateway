@@ -29,6 +29,23 @@ var Post = DS.Model.extend(NProgressSaveMixin, ValidationEngine, {
     tags: DS.hasMany('tag', {embedded: 'always'}),
     url: DS.attr('string'),
 
+    absoluteUrl: Ember.computed('url', 'ghostPaths.url', 'config.blogUrl', function () {
+        var blogUrl = this.get('config.blogUrl'),
+            postUrl = this.get('url');
+        return this.get('ghostPaths.url').join(blogUrl, postUrl);
+    }),
+
+    previewUrl: Ember.computed('uuid', 'ghostPaths.url', 'config.blogUrl', 'config.routeKeywords.preview', function () {
+        var blogUrl = this.get('config.blogUrl'),
+            uuid = this.get('uuid'),
+            previewKeyword = this.get('config.routeKeywords.preview');
+        // New posts don't have a preview
+        if (!uuid) {
+            return '';
+        }
+        return this.get('ghostPaths.url').join(blogUrl, previewKeyword, uuid);
+    }),
+
     scratch: null,
     titleScratch: null,
 

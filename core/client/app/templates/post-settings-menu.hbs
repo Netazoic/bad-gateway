@@ -1,7 +1,7 @@
 <div class="content-cover" {{action "closeSettingsMenu"}}></div>
 {{#gh-tabs-manager selected="showSubview" id="entry-controls" class="settings-menu-container"}}
 <div id="entry-controls">
-    <div {{bind-attr class="isViewingSubview:settings-menu-pane-out-left:settings-menu-pane-in :settings-menu :settings-menu-pane"}}>
+    <div class="{{if isViewingSubview 'settings-menu-pane-out-left' 'settings-menu-pane-in'}} settings-menu settings-menu-pane">
         <div class="settings-menu-header">
             <h4>Post Settings</h4>
             <button class="close icon-x settings-menu-header-action" {{action "closeSettingsMenu"}}><span class="hidden">Close</span></button>
@@ -11,6 +11,16 @@
             <form>
             <div class="form-group">
                 <label for="url">Post URL</label>
+                {{#if model.isPublished}}
+                <a class="post-view-link" target="_blank" href="{{model.absoluteUrl}}">
+                    View post <i class="icon-external"></i>
+                </a>
+                {{else}}
+                <a class="post-view-link" target="_blank" href="{{model.previewUrl}}">
+                    Preview <i class="icon-external"></i>
+                </a>
+                {{/if}}
+
                 <span class="input-icon icon-link">
                     {{gh-input class="post-setting-slug" id="url" value=slugValue name="post-setting-slug" focus-out="updateSlug" selectOnClick="true" stopEnterKeyDownPropagation="true"}}
                 </span>
@@ -68,7 +78,7 @@
         </div>{{! .settings-menu-content }}
     </div>{{! .post-settings-menu }}
 
-    <div {{bind-attr class="isViewingSubview:settings-menu-pane-in:settings-menu-pane-out-right :settings-menu :settings-menu-pane"}}>
+    <div class="{{if isViewingSubview 'settings-menu-pane-in' 'settings-menu-pane-out-right'}} settings-menu settings-menu-pane">
     {{#gh-tab-pane}}
         {{#if isViewingSubview}}
         <div class="settings-menu-header subview">

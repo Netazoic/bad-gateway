@@ -23,16 +23,14 @@ var LabsController = Ember.Controller.extend(Ember.Evented, {
         });
     },
 
-    codeUIFlag: Ember.computed.alias('config.codeInjectionUI'),
-
-    useCodeInjectionUI: Ember.computed('controllers.feature.codeInjectionUI', function (key, value) {
+    usePassProtectUI: Ember.computed('controllers.feature.passProtectUI', function (key, value) {
         // setter
         if (arguments.length > 1) {
-            this.saveLabs('codeInjectionUI', value);
+            this.saveLabs('passProtectUI', value);
         }
 
         // getter
-        return this.get('controllers.feature.codeInjectionUI') || false;
+        return this.get('controllers.feature.passProtectUI');
     }),
 
     actions: {

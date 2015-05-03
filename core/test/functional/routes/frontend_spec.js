@@ -29,6 +29,14 @@ describe('Frontend Routing', function () {
         };
     }
 
+    function addPosts(done) {
+        testUtils.initData().then(function () {
+            return testUtils.fixtures.insertPosts();
+        }).then(function () {
+            done();
+        });
+    }
+
     before(function (done) {
         ghost().then(function (ghostServer) {
             // Setup the request object with the ghost express app
@@ -249,13 +257,7 @@ describe('Frontend Routing', function () {
     });
 
     describe('Static page', function () {
-        before(function (done) {
-            testUtils.initData().then(function () {
-                return testUtils.fixtures.insertPosts();
-            }).then(function () {
-                done();
-            });
-        });
+        before(addPosts);
 
         after(testUtils.teardown);
 
@@ -276,14 +278,53 @@ describe('Frontend Routing', function () {
         });
     });
 
-    describe('Post with Ghost in the url', function () {
-        before(function (done) {
-            testUtils.initData().then(function () {
-                return testUtils.fixtures.insertPosts();
-            }).then(function () {
-                done();
-            });
+    describe('Post preview', function () {
+        before(addPosts);
+
+        after(testUtils.teardown);
+
+        it('should display draft posts accessed via uuid', function (done) {
+            request.get('/p/d52c42ae-2755-455c-80ec-70b2ec55c903/')
+                .expect('Content-Type', /html/)
+                .expect(200)
+                .end(function (err, res) {
+                    if (err) {
+                        return done(err);
+                    }
+
+                    var $ = cheerio.load(res.text);
+
+                    should.not.exist(res.headers['x-cache-invalidate']);
+                    should.not.exist(res.headers['X-CSRF-Token']);
+                    should.not.exist(res.headers['set-cookie']);
+                    should.exist(res.headers.date);
+
+                    $('title').text().should.equal('Not finished yet');
+                    $('.content .post').length.should.equal(1);
+                    $('.poweredby').text().should.equal('Proudly published with Ghost');
+                    $('body.post-template').length.should.equal(1);
+                    $('article.post').length.should.equal(1);
+
+                    done();
+                });
         });
+
+        it('should redirect published posts to their live url', function (done) {
+            request.get('/p/2ac6b4f6-e1f3-406c-9247-c94a0496d39d/')
+                .expect(301)
+                .expect('Location', '/short-and-sweet/')
+                .end(doEnd(done));
+        });
+
+        it('404s unknown uuids', function (done) {
+            request.get('/p/aac6b4f6-e1f3-406c-9247-c94a0496d39f/')
+                .expect(404)
+                .end(doEnd(done));
+        });
+    });
+
+    describe('Post with Ghost in the url', function () {
+        before(addPosts);
 
         after(testUtils.teardown);
 
@@ -376,7 +417,7 @@ describe('Frontend Routing', function () {
 
         it('should respond with xml', function (done) {
             request.get('/rss/')
-                .expect('Content-Type', 'application/rss+xml; charset=utf-8')
+                .expect('Content-Type', 'text/xml; charset=utf-8')
                 .expect('Cache-Control', testUtils.cacheRules['public'])
                 .expect(200)
                 .end(function (err, res) {
@@ -394,8 +435,9 @@ describe('Frontend Routing', function () {
                         siteDescription = '<description><![CDATA[Just a blogging platform.]]></description>',
                         siteUrl = '<link>http://127.0.0.1:2369/</link>',
                         postTitle = '<![CDATA[Welcome to Ghost]]>',
-                        postStart = '<description><![CDATA[<p>You\'re live!',
-                        postEnd = 'you think :)</p>]]></description>',
+                        descStart = '<description><![CDATA[<p>You\'re live!',
+                        postStart = '<content:encoded><![CDATA[<p>You\'re live!',
+                        postEnd = 'you think :)</p>]]></content:encoded>',
                         postLink = '<link>http://127.0.0.1:2369/welcome-to-ghost/</link>',
                         postCreator = '<dc:creator><![CDATA[Joe Bloggs]]>',
                         author = '<author>';
@@ -405,6 +447,7 @@ describe('Frontend Routing', function () {
                     content.indexOf(siteDescription).should.be.above(0);
                     content.indexOf(siteUrl).should.be.above(0);
                     content.indexOf(postTitle).should.be.above(0);
+                    content.indexOf(descStart).should.be.above(0);
                     content.indexOf(postStart).should.be.above(0);
                     content.indexOf(postEnd).should.be.above(0);
                     content.indexOf(postLink).should.be.above(0);
@@ -434,11 +477,49 @@ describe('Frontend Routing', function () {
                 .end(doEnd(done));
         });
 
-        describe('RSS pages', function () {
+        describe('More RSS', function () {
             before(function (done) {
                 testUtils.fixtures.insertPosts().then(function () {
-                    return testUtils.fixtures.insertMorePosts(11);
-                }).then(function () {
+                    done();
+                }).catch(done);
+            });
+
+            it('should use meta_description and image where available', function (done) {
+                var post1End = 'you think :)</p>]]></content:encoded>',
+                    post3Title = '<title><![CDATA[Short and Sweet]]>',
+                    post3DescStart = '<description><![CDATA[test stuff',
+                    post3ContentStart = '<content:encoded><![CDATA[<h2 id=\"testing\">testing</h2>\n\n' +
+                        '<img src=\"http:\/\/placekitten.com\/500\/200\"',
+                    post3Image = '<media:content url=\"http:\/\/placekitten.com\/500\/200\" medium=\"image\"\/>';
+
+                request.get('/rss/')
+                    .expect('Content-Type', 'text/xml; charset=utf-8')
+                    .expect('Cache-Control', testUtils.cacheRules['public'])
+                    .expect(200)
+                    .end(function (err, res) {
+                        if (err) {
+                            return done(err);
+                        }
+
+                        var content = res.text,
+                            endIndex = content.indexOf(post1End);
+
+                        content.indexOf('<rss').should.be.above(0);
+                        content.indexOf(post1End).should.be.above(0);
+                        content.indexOf(post3Title).should.be.above(endIndex);
+                        content.indexOf(post3DescStart).should.be.above(endIndex);
+                        content.indexOf(post3ContentStart).should.be.above(endIndex);
+                        content.indexOf(post3Image).should.be.above(endIndex);
+                        content.indexOf('</rss>').should.be.above(0);
+
+                        done();
+                    });
+            });
+        });
+
+        describe('RSS pages', function () {
+            before(function (done) {
+                testUtils.fixtures.insertMorePosts(11).then(function () {
                     done();
                 }).catch(done);
             });
@@ -899,7 +980,7 @@ describe('Frontend Routing', function () {
 
         it('should serve RSS with date permalink', function (done) {
             request.get('/rss/')
-                .expect('Content-Type', 'application/rss+xml; charset=utf-8')
+                .expect('Content-Type', 'text/xml; charset=utf-8')
                 .expect('Cache-Control', testUtils.cacheRules['public'])
                 .expect(200)
                 .end(function (err, res) {

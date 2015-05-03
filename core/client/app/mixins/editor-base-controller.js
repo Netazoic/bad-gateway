@@ -31,6 +31,19 @@ EditorControllerMixin = Ember.Mixin.create({
             return self.get('isDirty') ? self.unloadDirtyMessage() : null;
         };
     },
+    autoSave: function () {
+        // Don't save just because we swapped out models
+        if (this.get('model.isDraft') && !this.get('model.isNew')) {
+            var autoSaveId,
+                timedSaveId;
+
+            timedSaveId = Ember.run.throttle(this, 'send', 'save', {silent: true, disableNProgress: true}, 60000, false);
+            this.set('timedSaveId', timedSaveId);
+
+            autoSaveId = Ember.run.debounce(this, 'send', 'save', {silent: true, disableNProgress: true}, 3000);
+            this.set('autoSaveId', autoSaveId);
+        }
+    }.observes('model.scratch'),
 
     /**
      * By default, a post will not change its publish state.
@@ -192,10 +205,11 @@ EditorControllerMixin = Ember.Mixin.create({
 
     showSaveNotification: function (prevStatus, status, delay) {
         var message = this.messageMap.success.post[prevStatus][status],
-            path = this.get('ghostPaths.url').join(this.get('config.blogUrl'), this.get('model.url'));
+            path = this.get('model.absoluteUrl'),
+            type = this.get('postOrPage');
 
         if (status === 'published') {
-            message += '&nbsp;<a href="' + path + '">View ' + this.get('postOrPage') + '</a>';
+            message += `&nbsp;<a href="${path}">View ${type}</a>`;
         }
         this.notifications.showSuccess(message.htmlSafe(), {delayed: delay});
     },
@@ -330,19 +344,6 @@ EditorControllerMixin = Ember.Mixin.create({
 
         togglePreview: function (preview) {
             this.set('isPreview', preview);
-        },
-
-        autoSave: function () {
-            if (this.get('model.isDraft')) {
-                var autoSaveId,
-                    timedSaveId;
-
-                timedSaveId = Ember.run.throttle(this, 'send', 'save', {silent: true, disableNProgress: true}, 60000, false);
-                this.set('timedSaveId', timedSaveId);
-
-                autoSaveId = Ember.run.debounce(this, 'send', 'save', {silent: true, disableNProgress: true}, 3000);
-                this.set('autoSaveId', autoSaveId);
-            }
         },
 
         autoSaveNew: function () {

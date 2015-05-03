@@ -5,6 +5,7 @@
 
 
 <section class="content settings-debug">
+    <p><strong>Important note:</strong> Labs is a testing ground for experimental features which aren't quite ready for primetime. They may change, break or inexplicably disappear at any time.</p>
     <form id="settings-export">
         <fieldset>
             <div class="form-group">
@@ -47,18 +48,16 @@
 
     <form>
         <fieldset>
-            {{#unless codeUIFlag}}
             <div class="form-group for-checkbox">
-                <label for="labs-codeInjectionUI">Code Injection</label>
-                <label class="check box" for="labs-codeInjectionUI">
-                    {{input id="labs-codeInjectionUI" name="labs[codeInjectionUI]" type="checkbox"
-                    checked=useCodeInjectionUI}}
+                <label for="labs-passProtectUI">Password Protection</label>
+                <label class="checkbox" for="labs-passProtectUI">
+                    {{input id="labs-passProtectUI" name="labs[passProtectUI]" type="checkbox"
+                    checked=usePassProtectUI}}
                     <span class="input-toggle-component"></span>
-                    <p>Enable the code injection interface</p>
+                    <p>Enable the password protection interface</p>
                 </label>
-                <p>A settings screen which enables you to add code into your theme (work in progress)</p>
+                <p>A settings screen which enables you to add password protection to the front of your blog (work in progress)</p>
             </div>
-            {{/unless}}
         </fieldset>
     </form>
 

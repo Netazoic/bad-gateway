@@ -5,20 +5,19 @@
 /*global require, module */
 
 var moment      = require('moment'),
-    RSS         = require('rss'),
+    rss         = require('../data/xml/rss'),
     _           = require('lodash'),
-    url         = require('url'),
     Promise     = require('bluebird'),
     api         = require('../api'),
     config      = require('../config'),
     filters     = require('../filters'),
     template    = require('../helpers/template'),
     errors      = require('../errors'),
-    cheerio     = require('cheerio'),
     routeMatch  = require('path-match')(),
+    path        = require('path'),
 
     frontendControllers,
-    staticPostPermalink,
+    staticPostPermalink;
 
 // Cache static post permalink regex
 staticPostPermalink = routeMatch('/:slug/:edit?');
@@ -43,14 +42,6 @@ function getPostPage(options) {
  * @return {Object} containing page variables
  */
 function formatPageResponse(posts, page, extraValues) {
-    // Delete email from author for frontend output
-    // TODO: do this on API level if no context is available
-    posts = _.each(posts, function (post) {
-        if (post.author) {
-            delete post.author.email;
-        }
-        return post;
-    });
     extraValues = extraValues || {};
 
     var resp = {
@@ -65,12 +56,6 @@ function formatPageResponse(posts, page, extraValues) {
  * @return {Object} containing page variables
  */
 function formatResponse(post) {
-    // Delete email from author for frontend output
-    // TODO: do this on API level if no context is available
-    if (post.author) {
-        delete post.author.email;
-    }
-
     return {
         post: post
     };
@@ -139,6 +124,25 @@ function getActiveThemePaths() {
     });
 }
 
+/*
+* Sets the response context around a post and renders it
+* with the current theme's post view. Used by post preview
+* and single post methods.
+* Returns a function that takes the post to be rendered.
+*/
+function renderPost(req, res) {
+    return function (post) {
+        return getActiveThemePaths().then(function (paths) {
+            var view = template.getThemeViewForPost(paths, post),
+                response = formatResponse(post);
+
+            setResponseContext(req, res, response);
+
+            res.render(view, response);
+        });
+    };
+}
+
 frontendControllers = {
     homepage: function (req, res, next) {
         // Parse the page number
@@ -161,7 +165,7 @@ frontendControllers = {
             setReqCtx(req, page.posts);
 
             // Render the page of posts
-            filters.doFilter('prePostsRender', page.posts).then(function (posts) {
+            filters.doFilter('prePostsRender', page.posts, res.locals).then(function (posts) {
                 getActiveThemePaths().then(function (paths) {
                     var view = paths.hasOwnProperty('home.hbs') ? 'home' : 'index';
 
@@ -213,7 +217,7 @@ frontendControllers = {
             }
 
             // Render the page of posts
-            filters.doFilter('prePostsRender', page.posts).then(function (posts) {
+            filters.doFilter('prePostsRender', page.posts, res.locals).then(function (posts) {
                 getActiveThemePaths().then(function (paths) {
                     var view = template.getThemeViewForTag(paths, options.tag),
                     // Format data for template
@@ -267,7 +271,7 @@ frontendControllers = {
             }
 
             // Render the page of posts
-            filters.doFilter('prePostsRender', page.posts).then(function (posts) {
+            filters.doFilter('prePostsRender', page.posts, res.locals).then(function (posts) {
                 getActiveThemePaths().then(function (paths) {
                     var view = paths.hasOwnProperty('author.hbs') ? 'author' : 'index',
                         // Format data for template
@@ -285,6 +289,37 @@ frontendControllers = {
                 });
             });
         }).catch(handleError(next));
+    },
+
+    preview: function (req, res, next) {
+        var params = {
+                uuid: req.params.uuid,
+                status: 'all',
+                include: 'author,tags,fields'
+            };
+
+        api.posts.read(params).then(function (result) {
+            var post = result.posts[0];
+
+            if (!post) {
+                return next();
+            }
+
+            if (post.status === 'published') {
+                return res.redirect(301, config.urlFor('post', {post: post}));
+            }
+
+            setReqCtx(req, post);
+
+            filters.doFilter('prePostsRender', post, res.locals)
+                .then(renderPost(req, res));
+        }).catch(function (err) {
+            if (err.errorType === 'NotFoundError') {
+                return next();
+            }
+
+            return handleError(next)(err);
+        });
     },
 
     single: function (req, res, next) {
@@ -352,16 +387,8 @@ frontendControllers = {
 
                 setReqCtx(req, post);
 
-                filters.doFilter('prePostsRender', post).then(function (post) {
-                    getActiveThemePaths().then(function (paths) {
-                        var view = template.getThemeViewForPost(paths, post),
-                            response = formatResponse(post);
-
-                        setResponseContext(req, res, response);
-
-                        res.render(view, response);
-                    });
-                });
+                filters.doFilter('prePostsRender', post, res.locals)
+                    .then(renderPost(req, res));
             }
 
             // If we've checked the path with the static permalink structure
@@ -418,165 +445,29 @@ frontendControllers = {
             // If we've thrown an error message
             // of type: 'NotFound' then we found
             // no path match.
-            if (err.type === 'NotFoundError') {
+            if (err.errorType === 'NotFoundError') {
                 return next();
             }
 
             return handleError(next)(err);
         });
     },
-    rss: function (req, res, next) {
-        function isPaginated() {
-            return req.route.path.indexOf(':page') !== -1;
-        }
-
-        function isTag() {
-            return req.route.path.indexOf('/' + config.routeKeywords.tag + '/') !== -1;
-        }
-
-        function isAuthor() {
-            return req.route.path.indexOf('/' + config.routeKeywords.author + '/') !== -1;
-        }
-
-        // Initialize RSS
-        var pageParam = req.params.page !== undefined ? parseInt(req.params.page, 10) : 1,
-            slugParam = req.params.slug,
-            baseUrl = config.paths.subdir;
-
-        if (isTag()) {
-            baseUrl += '/' + config.routeKeywords.tag + '/' + slugParam + '/rss/';
-        } else if (isAuthor()) {
-            baseUrl += '/' + config.routeKeywords.author + '/' + slugParam + '/rss/';
-        } else {
-            baseUrl += '/rss/';
-        }
-
-        // No negative pages, or page 1
-        if (isNaN(pageParam) || pageParam < 1 || (pageParam === 1 && isPaginated())) {
-            return res.redirect(baseUrl);
-        }
-
-        return Promise.all([
-            api.settings.read('title'),
-            api.settings.read('description'),
-            api.settings.read('permalinks')
-        ]).then(function (result) {
-            var options = {};
-
-            if (pageParam) { options.page = pageParam; }
-            if (isTag()) { options.tag = slugParam; }
-            if (isAuthor()) { options.author = slugParam; }
-
-            options.include = 'author,tags,fields';
-
-            return api.posts.browse(options).then(function (page) {
-                var title = result[0].settings[0].value,
-                    description = result[1].settings[0].value,
-                    permalinks = result[2].settings[0],
-                    majorMinor = /^(\d+\.)?(\d+)/,
-                    trimmedVersion = res.locals.version,
-                    siteUrl = config.urlFor('home', {secure: req.secure}, true),
-                    feedUrl = config.urlFor('rss', {secure: req.secure}, true),
-                    maxPage = page.meta.pagination.pages,
-                    feed;
-
-                trimmedVersion = trimmedVersion ? trimmedVersion.match(majorMinor)[0] : '?';
-
-                if (isTag()) {
-                    if (page.meta.filters.tags) {
-                        title = page.meta.filters.tags[0].name + ' - ' + title;
-                        feedUrl = siteUrl + config.routeKeywords.tag + '/' + page.meta.filters.tags[0].slug + '/rss/';
-                    }
-                }
-
-                if (isAuthor()) {
-                    if (page.meta.filters.author) {
-                        title = page.meta.filters.author.name + ' - ' + title;
-                        feedUrl = siteUrl + config.routeKeywords.author + '/' + page.meta.filters.author.slug + '/rss/';
-                    }
-                }
-
-                feed = new RSS({
-                    title: title,
-                    description: description,
-                    generator: 'Ghost ' + trimmedVersion,
-                    feed_url: feedUrl,
-                    site_url: siteUrl,
-                    ttl: '60'
-                });
-
-                // If page is greater than number of pages we have, redirect to last page
-                if (pageParam > maxPage) {
-                    return res.redirect(baseUrl + maxPage + '/');
-                }
-
-                setReqCtx(req, page.posts);
-                setResponseContext(req, res);
-
-                filters.doFilter('prePostsRender', page.posts).then(function (posts) {
-                    posts.forEach(function (post) {
-                        var item = {
-                                title: post.title,
-                                guid: post.uuid,
-                                url: config.urlFor('post', {post: post, permalinks: permalinks}, true),
-                                date: post.published_at,
-                                categories: _.pluck(post.tags, 'name'),
-                                author: post.author ? post.author.name : null
-                            },
-                            htmlContent = cheerio.load(post.html, {decodeEntities: false});
-
-                        if (post.image) {
-                            htmlContent('p').first().before('<img src="' + post.image + '" />');
-                            htmlContent('img').attr('alt', post.title);
-                        }
-
-                        // convert relative resource urls to absolute
-                        ['href', 'src'].forEach(function (attributeName) {
-                            htmlContent('[' + attributeName + ']').each(function (ix, el) {
-                                var baseUrl,
-                                    attributeValue,
-                                    parsed;
-
-                                el = htmlContent(el);
-
-                                attributeValue = el.attr(attributeName);
-
-                                // if URL is absolute move on to the next element
-                                try {
-                                    parsed = url.parse(attributeValue);
-
-                                    if (parsed.protocol) {
-                                        return;
-                                    }
-                                } catch (e) {
-                                    return;
-                                }
-
-                                // compose an absolute URL
-
-                                // if the relative URL begins with a '/' use the blog URL (including sub-directory)
-                                // as the base URL, otherwise use the post's URL.
-                                baseUrl = attributeValue[0] === '/' ? siteUrl : item.url;
-
-                                // prevent double slashes
-                                if (baseUrl.slice(-1) === '/' && attributeValue[0] === '/') {
-                                    attributeValue = attributeValue.substr(1);
-                                }
-
-                                attributeValue = baseUrl + attributeValue;
-                                el.attr(attributeName, attributeValue);
-                            });
-                        });
-
-                        item.description = htmlContent.html();
-                        feed.item(item);
-                    });
-                }).then(function () {
-                    res.set('Content-Type', 'application/rss+xml; charset=UTF-8');
-                    res.send(feed.xml());
-                });
-            });
-        }).catch(handleError(next));
+    rss: rss,
+    private: function (req, res) {
+        var defaultPage = path.resolve(config.paths.adminViews, 'password.hbs');
+        return getActiveThemePaths().then(function (paths) {
+            var data = {
+                forward: req.query.r
+            };
+            if (res.error) {
+                data.error = res.error;
+            }
+            if (paths.hasOwnProperty('password.hbs')) {
+                return res.render('password', data);
+            } else {
+                return res.render(defaultPage, data);
+            }
+        });
     }
 };
 
