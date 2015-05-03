@@ -1,0 +1,290 @@
+.foo{}
+body  {background: #efefef; color:#333; font:normal 11px/14px verdana, sans-serif; text-decoration:none; word-spacing:-0.05em;
+	margin: 0; /* it's good practice to zero the margin and padding of the body element to account for differing browser defaults */
+	padding: 0;
+	text-align: center; /* this centers the container in IE 5* browsers. The text is then set to the left aligned default in the #container selector */
+}
+header {
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMCIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(100%, rgba(255,255,255,0))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%); /* IE10+ */
+	background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%); /* W3C */
+ 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff', GradientType=0 ); /* IE6-8 */
+	color: #333;
+	margin:0 auto;
+	text-align:left;
+	width: 100%;
+}
+header img {
+	vertical-align: middle;
+}
+#header {
+	border-bottom:1px solid #cacaca;
+	color: #333;
+	height: 72px;
+	margin: 0 auto;
+	position: relative;
+	width: 94%;
+	z-index: 100;
+}
+#page-logo {
+	bottom: 6px;
+	left: 0;
+	position: absolute;
+}
+.twoColLiqLtHdr #container {
+	width: 90%;  /* this will create a container 90% of the browser width */
+	background: #fff;
+	margin: 10px auto; /* the auto margins (in conjunction with a width) center the tactic */
+	border: 1px solid #ccc;
+	text-align: left; /* this overrides the text-align: center on the body element. */
+}
+.twoColLiqLtHdr #container #marr-link-style a:hover{background-color:#ebebff;border-color:#cb2027;color:#9d102d;}
+.twoColLiqLtHdr header {
+	background: transparent url(/images/ECP/lightgray_background.png) repeat-x 0 0;
+	padding: 0;  /* this padding matches the left alignment of the elements in the divs that appear beneath it. If an image is used in the #header instead of text, you may want to remove the padding. */
+}
+.twoColLiqLtHdr #header h1 {
+	margin: 0; /* zeroing the margin of the last element in the #header div will avoid margin collapse - an unexplainable space between divs. If the div has a border around it, this is not necessary as that also avoids the margin collapse */
+	padding: 0; /* using padding instead of margin will allow you to keep the element away from the edges of the div */
+}
+
+/* Tips for sidebar1:
+1. since we are working in percentages, it's best not to use padding on the sidebar. It will be added to the width for standards compliant browsers creating an unknown actual width.
+2. Space between the side of the div and the elements within it can be created by placing a left and right margin on those elements as seen in the ".twoColLiqLtHdr #sidebar1 p" rule.
+3. Since Explorer calculates widths after the parent element is rendered, you may occasionally run into unexplained bugs with percentage-based columns. If you need more predictable results, you may choose to change to pixel sized columns.
+*/
+.twoColLiqLtHdr #sidebar1 {
+	float: left;
+	width: 180px; /* since this element is floated, a width must be given */
+	background: #fff; /* the background color will be displayed for the length of the content in the column, but no further */
+	padding: 0; /* top and bottom padding create visual space within this div  */
+	margin: 18px 0 0 0; /* top margin */
+}
+.twoColLiqLtHdr #sidebar1 h3, .twoColLiqLtHdr #sidebar1 p {
+	margin-left: 10px; /* the left and right margin should be given to every element that will be placed in the side columns */
+	margin-right: 10px;
+}
+.twoColLiqLtHdr #sidebar1 ul { line-height:25px; list-style:none; margin:0; padding:0}
+.twoColLiqLtHdr #sidebar1 ul a:link, #navBar ul a:visited {display: block;}
+.twoColLiqLtHdr #sidebar1 ul li {border-bottom: 1px solid #cccccc; list-style:none; margin:0;}
+.twoColLiqLtHdr #sidebar1 ul li a{ color:#9d102d; text-decoration:none;}
+.twoColLiqLtHdr #sidebar1 ul li a:hover{color:#ffffff;}
+
+/* hack to fix IE/Win's broken rendering of block-level anchors in lists */
+.twoColLiqLtHdr #sidebar1 li {border-bottom: 1px solid #EEE;}
+
+/* fix for browsers that don't need the hack */
+html>body #sidebar1 li {border-bottom: none;}
+
+/*********** #sectionLinks styles ***********/
+
+.twoColLiqLtHdr #sidebar1 #sectionLinks{
+	font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; font-weight:bold;
+	position: relative;
+	margin: 0px;
+	padding: 0px;
+}
+
+.twoColLiqLtHdr #sidebar1 #sectionLinks h3{
+	padding: 10px 0px 2px 10px;
+}
+
+.twoColLiqLtHdr #sidebar1 #sectionLinks a:link{
+	border-top: 1px solid #fff;
+	padding: 2px 0px 2px 10px;
+	width: 100%;
+	width: auto;
+}
+
+.twoColLiqLtHdr #sidebar1 #sectionLinks a:visited{
+	border-top: 1px solid #fff;
+	padding: 2px 0px 2px 10px;
+}
+
+.twoColLiqLtHdr #sidebar1 #sectionLinks a:hover{
+	border-top: 1px solid #cccccc;
+	background-color: #dddddd;
+	padding: 2px 0px 2px 10px;
+}
+
+
+/* Tips for mainCalendar:
+1. the space between the mainCalendar and sidebar1 is created with the left margin on the mainCalendar div.  No matter how much content the sidebar1 div contains, the column space will remain. You can remove this left margin if you want the #mainCalendar div's text to fill the #sidebar1 space when the content in #sidebar1 ends.
+2. to avoid float drop at a supported minimum 800 x 600 resolution, elements within the mainCalendar div should be 430px or smaller (this includes images).
+3. in the Internet Explorer Conditional Comment below, the zoom property is used to give the mainCalendar "hasLayout." This avoids several IE-specific bugs.
+*/
+.twoColLiqLtHdr #mainContent {
+    margin: 18px 5px 0 190px; /* the right margin can be given in percentages or pixels. It creates the space down the right side of the tactic. */
+}
+/* The MainCalendar class is for borrowing just what is needed from mainContent
+*/ 
+.twoColLiqLtHdr #mainCalendar {
+    margin: 18px 5px 0 190px; /* the right margin can be given in percentages or pixels. It creates the space down the right side of the tactic. */
+}
+.twoColLiqLtHdr #footer {
+	padding: 0 10px; /* this padding matches the left alignment of the elements in the divs that appear above it. */
+}
+.twoColLiqLtHdr #footer p {
+	margin: 0; /* zeroing the margins of the first element in the footer will avoid the possibility of margin collapse - a space between divs */
+	padding: 10px 0; /* padding on this element will create space, just as the the margin would have, without the margin collapse issue */
+}
+
+/* Miscellaneous classes for reuse */
+.btn{/* button class */
+	background-color:#C0C0C0;
+	border:1px solid black;
+	font-weight:normal;
+	font-size:1.3em;
+	background:url("images/buttonEnabled.png") repeat-x scroll left bottom #FFFFFF;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 5px;
+	-webkit-box-shadow: rgba(0,0,0,0.5) 1px 1px 1px;
+	-moz-box-shadow: rgba(0,0,0,0.5) 1px 1px 1px;
+
+}
+.btn:hover{
+	background-color:white;
+	color:gray;
+	background:url("images/buttonHover.png") repeat-x scroll left bottom #FFFFFF;
+}
+.btn.disabled{
+		background:url("images/buttonDisabled.png") repeat-x scroll left bottom #FFFFFF;
+}
+.btn.small{
+	font-size:.8em;
+}
+#cmdFieldSet{
+	background-color:#E8E8E8 ;
+}
+.fltrt { /* this class can be used to float an element right in your tactic. The floated element must precede the element it should be next to on the tactic. */
+	float: right;
+	margin-left: 8px;
+}
+.fltlft { /* this class can be used to float an element left in your tactic */
+	float: left;
+	margin-right: 8px;
+}
+.clearfloat { /* this class should be placed on a div or break element and should be the final element before the close of a container that should fully contain a float */
+	clear:both;
+    height:0;
+    font-size: 1px;
+    line-height: 0px;
+}
+fieldset {
+	border:1px solid #666666;
+	margin-bottom:5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-webkit-box-shadow: rgba(0,0,0,0.5) 2px 2px 2px;
+	-moz-box-shadow: rgba(0,0,0,0.5) 2px 2px 2px;
+	padding:10px;}
+
+fieldset .commandBar{
+	border:1px solid #666666;
+	margin:10px 25px 50px 25px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-webkit-box-shadow: rgba(0,0,0,0.5) 2px 2px 2px;
+	-moz-box-shadow: rgba(0,0,0,0.5) 2px 2px 2px;
+	padding:5px 10px}
+
+legend{
+	color:#000000;
+	font-family:Georgia, 'Times New Roman', Times, serif;
+	font-size:20px;
+	padding:4px;}
+
+legend .commandBar{
+	color:#000000;
+	font-family:Georgia, 'Times New Roman', Times, serif;
+	font-size:20px;
+	}
+.commButton{
+		margin:10px;
+		margin-top:40px;
+		margin-left:300px;
+		padding:3px;
+		background-color:lavender;
+		font-weight:bold;
+
+}
+
+.formEvent{
+	padding:10px;}
+
+.formEventHdr{
+	font-size:15px;
+	font-weight:bold;
+	padding-bottom:4px;
+	padding-top:10px;
+}
+.formEventBody{
+	font-size:12px;}
+
+.messageSummary{
+	padding:10px;
+	font-style:italic;
+	font-size:1.1em;
+	}
+
+.iconCheck{
+	width:20px;
+	background-image:url(./images/check.jpeg);
+	background-color:lightgreen;
+	}
+
+.iconX{
+	width:20px;
+	background-color:red;
+	background-image:url(images/xmark.jpeg);
+	}
+
+.homeTH{
+	background:url(images/prop_results_sprite.png) repeat-x scroll 0 -22px #E0E0E0;
+	height:22px;
+	line-height:8px;
+	}
+
+.homeTD{
+	border-bottom:1px solid #CECDBE;
+	line-height: 20px;
+	}
+.widget-button{
+	margin:10px;
+	}
+
+.errorMessageDisplay {color:#c00; font-size:16px; font-weight:bold;}
+.errorMessageDisplay h2{background:url(errorPattern.png) repeat;color:#c00;font:bold 16px arial, helvetica, sans-serif;padding:10px 10px 10px 5px;}
+.errorMessageDisplay h2 p{background:transparent url(alert.png) no-repeat;padding:5px 10px 5px 40px;font:bold 16px arial, helvetica, sans-serif;}
+
+.ecpStatus{
+	padding:2px;
+	width:100%;
+}
+
+/* STATUS COLORS -- tactic Status*/
+.TCSTRT {background-color:#ffffff; border-color:#e5e5e5;}
+.TCACCPT {background-color:#00cc33; border-color:#00cc33;}
+.TCDONE {background-color:#6699cc; border-color:#347ac0; color:white;}
+.TCCMPLT {background-color:#cccc66; border-color:#dbc930;}
+.TCRTRN {background-color:#ff3333; color:white;}
+.TCABND {background-color:#cccccc; border-color:#666666;}
+
+/* STATUS COLORS -- contract Status*/
+.STARTED {background-color:yellow; border-color:#e5e5e5;}
+.REQUESTED {background-color:yellow; border-color:yellow;}
+.APPROVED {background-color:#00cc33; border-color:#00cc33;}
+.SUBMITTED {background-color:#6699cc; border-color:#347ac0;}
+.ACCEPTED {background-color:#00cc33; border-color:#00cc33;}
+.PREVIEW {background-color:#cccc66; border-color:#dbc930;}
+.PREVAPP {background-color:#00cc33; border-color:#dbc930;}
+.RETURNED {background-color:#ff3333; border-color:#666666; color:white;}
+.DELAYED {background-color:#ff3333; border-color:#666666;}
+.DENIED {background-color:#cccccc; border-color:#666666;}
+.LIVE {background-color:#6699cc; border-color:#347ac0;}
+

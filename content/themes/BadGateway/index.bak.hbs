@@ -1,0 +1,37 @@
+{{!< default}}
+
+{{! The comment above "< default" means - insert everything in this file into
+    the {body} of the default.hbs template, which contains our header/footer. }}
+<script>
+   //JM: Hacked up tag-limiter for the posts collection
+  tagLimiter="blog"
+</script>
+
+{{! The big featured header on the homepage, with the site logo and description }}
+
+
+
+				<div id="panel">
+				<div id="slideshow">
+					<img id="img-main" src="{{asset "/images/slide_universum_stars_800x500.jpg"}}" />
+				</div>
+			</div>
+
+			<div id="content">
+			    {{#post}}
+    <article class="{{post_class}} single">
+        {{! Each post has the blog logo at the top, with a link back to the home page }}
+        <header>
+            <h1>{{{title}}}</h1>
+        </header>
+
+        {{! Everything inside the #post tags pulls data from the post }}
+        {{content}}
+
+    {{/post}}
+    </article>
+			</div>
+
+
+
+</main>

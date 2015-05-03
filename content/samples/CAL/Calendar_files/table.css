@@ -1,0 +1,195 @@
+#search-results h2 a:link{color:#33c;}
+#search-results h2 a:visited{color:#39e;}
+#search-results h2 a:hover, table#search-results h2 a:active{color:#9d102d;}
+
+table#search-results label{color:#fff;font:bold 11px arial, sans-serif;background:url(/images/ECP/Search_results_sprite.gif) no-repeat 0 -307px;height:25px;width:21px;display:block;padding-top:3px;float:left;text-align:center;margin:0 9px 0 0;}
+table#search-results h2{display:inline;margin:0;font:bold 11px/11px arial, sans-serif;}
+table#search-results input{float:left;margin:0 9px 0 0;}
+table#search-results {border-color: #c9caca; border-style: solid; width:100%}
+table#search-results {border-width: 0 1px 1px 1px; border-spacing: 0; border-collapse: collapse;}
+table#search-results th {background: url("/images/ECP/MainBar_BG_1x42.jpg") repeat-x scroll left bottom #a0a0a0; border-bottom:3px solid #efefef; border-left:1px solid #a0a0a0; border-right:1px solid #a0a0a0; border-top:1px solid #a0a0a0; font:10px/12px arial; padding:7px 0; text-align:center; vertical-align:bottom;}
+table#search-results th:hover {border-bottom:3px solid #9d102d;}
+table#search-results th a {color:#333; text-decoration:none;}
+table#search-results th a:hover {color:#9d102d;}
+table#search-results th a:active {color:#cb2027;}
+table#search-results tr {background:#fff; height:28px; text-align: center; vertical-align: top;}
+table#search-results tr.odd {background:#f0f3f7;}
+table#search-results td {border-color: #c9caca; border-style: solid; border-width: 0px 1px; height:30px; line-height:24px; margin: 0; padding: 2px 0; text-align: center;}
+table#search-results thead td {background:url(/images/ECP/prop_results_sprite.png) repeat-x scroll 0 0px #E0E0E0; height:22px; line-height:8px;}
+table#search-results thead td:hover {border-bottom:3px solid #9d102d;}
+table#search-results tbody tr{cursor:pointer;}
+table#search-results tbody tr:hover {background:#badde9;}
+table#search-results tbody td{border:none; line-height:12px; height:28px; padding: 1px 1px 0; text-align: center; vertical-align: top;}
+table#search-results tfoot td {background: url("/images/ECP/MainBar_BG_1x42.jpg") repeat-x scroll left bottom transparent; border:1px solid #a0a0a0; font:10px/12px arial; padding:7px 0; text-align:center; vertical-align:bottom;}
+table#search-results #tbl-col-head {background: url(/images/ECP/Search_results_sprite.gif) 0 11px no-repeat; color: #333333; cursor: pointer; font: bold 10px arial,helvetica,sans-serif; padding: 8px 16px; text-decoration: none;}
+
+table#customSearch td {padding-bottom:10px;}
+
+
+#paging-selector{float:right; margin:0px;}
+#paging-selector li{float:left;margin-right:5px;}
+#paging-selector li.selected{background-color:#aaa;color:#fff;border:1px solid #999;padding:2px 4px;}
+li#paging-first,li#paging-previous, li#paging-next, li#paging-last {width:16px;text-indent:-99999px;}
+li#paging-first a{background:transparent url(/images/ECP/Search_results_sprite.gif) 0 -142px no-repeat;border:none;height:16px;}
+li#paging-previous a{background:transparent url(/images/ECP/Search_results_sprite.gif) 0 -87px no-repeat;border:none;height:16px;}
+li#paging-next a{background:transparent url(/images/ECP/Search_results_sprite.gif) 0 -115px no-repeat;border:none;height:16px;}
+li#paging-last a{background:transparent url(/images/ECP/Search_results_sprite.gif) 0 -170px no-repeat;border:none;height:16px;}
+#paging-selector a{display:block;background-color:white;border:1px solid #999;padding:2px 4px;text-decoration:none;}
+#records-per-page{clear:none;float:right;white-space:nowrap;margin-right:10px;}
+
+#request-module-button{background:transparent url(/images/ECP/Search_results_sprite.gif) 7px -227px no-repeat;}
+.request-button, .compare-button-hover{margin-left:30px;font:bold 11px/14px arial,sans-serif;text-decoration:none;color:#9d102d;text-align:left;padding-left:31px;border:0;cursor:pointer;}
+.request-button span, .compare-button-hover span{text-decoration:none;font:10px/12px regular;color:#666;margin-left:7px;}
+
+body  {background: #efefef; color:#333; font:normal 11px/14px verdana, sans-serif; text-decoration:none; word-spacing:-0.05em;
+	margin: 0; /* it's good practice to zero the margin and padding of the body element to account for differing browser defaults */
+	padding: 0;
+	text-align: center; /* this centers the container in IE 5* browsers. The text is then set to the left aligned default in the #container selector */
+}
+.twoColLiqLtHdr #container {
+	width: 96%;  /* this will create a container 90% of the browser width */
+	background: #fff;
+	margin: 10px auto; /* the auto margins (in conjunction with a width) center the page */
+	border: 1px solid #ccc;
+	text-align: left; /* this overrides the text-align: center on the body element. */
+}
+.twoColLiqLtHdr #container #marr-link-style a:hover{background-color:#ebebff;border-color:#cb2027;color:#9d102d;}
+.twoColLiqLtHdr #header {
+    background: transparent repeat-x 0 0;
+	padding: 0;  /* this padding matches the left alignment of the elements in the divs that appear beneath it. If an image is used in the #header instead of text, you may want to remove the padding. */
+}
+.twoColLiqLtHdr #header h1 {
+	margin: 0; /* zeroing the margin of the last element in the #header div will avoid margin collapse - an unexplainable space between divs. If the div has a border around it, this is not necessary as that also avoids the margin collapse */
+	padding: 0; /* using padding instead of margin will allow you to keep the element away from the edges of the div */
+}
+
+/* Tips for sidebar1:
+1. since we are working in percentages, it's best not to use padding on the sidebar. It will be added to the width for standards compliant browsers creating an unknown actual width.
+2. Space between the side of the div and the elements within it can be created by placing a left and right margin on those elements as seen in the ".twoColLiqLtHdr #sidebar1 p" rule.
+3. Since Explorer calculates widths after the parent element is rendered, you may occasionally run into unexplained bugs with percentage-based columns. If you need more predictable results, you may choose to change to pixel sized columns.
+*/
+.twoColLiqLtHdr #sidebar1 {
+	float: left;
+	width: 180px; /* since this element is floated, a width must be given */
+	background: #fff; /* the background color will be displayed for the length of the content in the column, but no further */
+	padding: 0; /* top and bottom padding create visual space within this div  */
+	margin: 18px 0 0 0; /* top margin */
+}
+.twoColLiqLtHdr #sidebar1 h3, .twoColLiqLtHdr #sidebar1 p {
+	margin-left: 10px; /* the left and right margin should be given to every element that will be placed in the side columns */
+	margin-right: 10px;
+}
+.twoColLiqLtHdr #sidebar1 ul { line-height:25px; list-style:none; margin:0; padding:0}
+.twoColLiqLtHdr #sidebar1 ul a:link, #navBar ul a:visited {display: block;}
+.twoColLiqLtHdr #sidebar1 ul li {border-bottom: 1px solid #cccccc; list-style:none; margin:0;}
+.twoColLiqLtHdr #sidebar1 ul li a{ color:#9d102d; text-decoration:none;}
+.twoColLiqLtHdr #sidebar1 ul li a:hover{color:#ffffff;}
+
+/* hack to fix IE/Win's broken rendering of block-level anchors in lists */
+.twoColLiqLtHdr #sidebar1 li {border-bottom: 1px solid #EEE;}
+
+/* fix for browsers that don't need the hack */
+html>body #sidebar1 li {border-bottom: none;}
+
+/*********** #sectionLinks styles ***********/
+
+.twoColLiqLtHdr #sidebar1 #sectionLinks{
+	font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; font-weight:bold;
+	position: relative;
+	margin: 0px;
+	padding: 0px;
+}
+
+.twoColLiqLtHdr #sidebar1 #sectionLinks h3{
+	padding: 10px 0px 2px 10px;
+}
+
+.twoColLiqLtHdr #sidebar1 #sectionLinks a:link{
+	border-top: 1px solid #fff;
+	padding: 2px 0px 2px 10px;
+	width: 100%;
+	width: auto;
+}
+
+.twoColLiqLtHdr #sidebar1 #sectionLinks a:visited{
+	border-top: 1px solid #fff;
+	padding: 2px 0px 2px 10px;
+}
+
+.twoColLiqLtHdr #sidebar1 #sectionLinks a:hover{
+	border-top: 1px solid #cccccc;
+	background-color: #dddddd;
+	padding: 2px 0px 2px 10px;
+}
+
+
+/* Tips for mainContent:
+1. the space between the mainContent and sidebar1 is created with the left margin on the mainContent div.  No matter how much content the sidebar1 div contains, the column space will remain. You can remove this left margin if you want the #mainContent div's text to fill the #sidebar1 space when the content in #sidebar1 ends.
+2. to avoid float drop at a supported minimum 800 x 600 resolution, elements within the mainContent div should be 430px or smaller (this includes images).
+3. in the Internet Explorer Conditional Comment below, the zoom property is used to give the mainContent "hasLayout." This avoids several IE-specific bugs.
+*/
+.twoColLiqLtHdr #mainContent {
+	margin: 18px 15px 0 15px; /* the right margin can be given in percentages or pixels. It creates the space down the right side of the page. */
+}
+
+/* Miscellaneous classes for reuse */
+.fltrt { /* this class can be used to float an element right in your page. The floated element must precede the element it should be next to on the page. */
+	float: right;
+	margin-left: 8px;
+}
+.fltlft { /* this class can be used to float an element left in your page */
+	float: left;
+	margin-right: 8px;
+}
+.clearfloat { /* this class should be placed on a div or break element and should be the final element before the close of a container that should fully contain a float */
+	clear:both;
+    height:0;
+    font-size: 1px;
+    line-height: 0px;
+}
+
+.sort {background: url(/images/ECP/Search_results_sprite.gif) right 11px no-repeat;}
+
+#customFilterButton {
+  background:url("/images/buttonEnabled.png") repeat-x scroll left bottom #FFFFFF;
+  float:right;
+  text-align:center;
+  width:111px;
+  border: 1px solid black;
+  border-radius: 2px 2px 2px 2px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 18px;
+}
+#customFilterButton:hover {background:url('/images/buttonHover.png') center top no-repeat;}
+#customFilterButton a {color:#333; text-decoration:none;}
+#customFilterButton a:hover {color:#243c5f; text-decoration:none;}
+
+#layout-body-container #filter-control-container {text-align:right}
+.dijitPopup { font-size:0.688em;}
+
+#executeSearch{
+background-color: #9D102D;
+border:none;
+color: white;
+font-family: arial, helvetica, sans-serif;
+font-size: 12px;
+font-weight: bold;
+margin-bottom: 0px;
+margin-left: 2px;
+margin-right: 2px;
+margin-top: 0px;
+padding-bottom: 0px;
+padding-left: 12px;
+padding-right: 12px;
+padding-top: 0px;
+text-align: center;
+white-space: nowrap;
+}
+
+.close-widget {background:url("/images/ECP/global_sprite.png") no-repeat scroll 0 -748px transparent;}
+.hidden-label {left:-999em;position:absolute;top:auto;}
+}
+
+

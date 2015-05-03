@@ -1,0 +1,33 @@
+{{!< default}}
+
+{{! The comment above "< default" means - insert everything in this file into
+    the {body} of the default.hbs template, which contains our header/footer. }}
+<script>
+   //JM: Hacked up tag-limiter for the posts collection
+  tagLimiter="blog"
+</script>
+
+{{! The main content area on the homepage }}
+<main>
+    {{! Each post will be output using this markup }}
+    {{#foreach posts}}
+
+    <article class="{{post_class}}">
+        <header>
+            <h1><a href="{{url}}">{{{title}}}</a></h1>
+        </header>
+
+        <p>{{excerpt}}… <a href="{{url}}" class="more">Read more</a></p>
+        <footer>
+            <p class="meta">
+                <time datetime="{{date format='YYYY-MM-DD'}}">{{date format="DD MMM YYYY"}}</time>
+                <span class="tags">{{tags prefix="on "}}</span>
+            </p>
+        </footer>
+    </article>
+
+    {{/foreach}}
+
+    {{!! After all the posts, we have the previous/next pagination links }}
+    {{pagination}}
+</main>

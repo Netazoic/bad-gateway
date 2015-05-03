@@ -1,0 +1,65 @@
+{{!< default}}
+
+{{! The comment above "< default" means - insert everything in this file into
+    the {body} of the default.hbs template, which contains our header/footer. }}
+<script>
+   //JM: Hacked up tag-limiter for the posts collection
+  tagLimiter="blog"
+</script>
+
+{{! The main content area on the homepage }}
+<main>
+    {{! Each post will be output using this markup }}
+    {{#foreach posts}}
+
+		<div class="column1 home">
+		{{#if image}}
+		    <a href="{{url}}">
+		    <div class="column1-nimg" style="background-image: url({{image}})"></div>
+		    </a>
+		{{else}}&nbsp;
+		{{/if}}
+	 </div>
+	 
+	<div class="column2 home">
+
+    <article class="{{post_class}}">
+        <header>
+            <h1><a href="{{url}}">{{{title}}}</a></h1>
+        </header>
+
+        <p>{{excerpt}}… <a href="{{url}}" class="more">Read more</a></p>
+        <footer>
+            <p class="meta">
+                <time datetime="{{date format='YYYY-MM-DD'}}">{{date format="DD MMM YYYY"}}</time>
+                <span class="tags">{{tags prefix="on "}}</span>
+            </p>
+        </footer>
+    </article>
+	</div> <!-- /column2 -->
+    {{/foreach}}
+    {{!! After all the posts, we have the previous/next pagination links }}
+	<div class="column1 home">&nbsp;</div>
+	<div class="column2 home">
+	    {{pagination}}
+    </div>
+</main>
+
+<div id="slide-loader" data-flgLoad="false" >
+<img src="/content/images/2014/11/slide_universum_stars.png"/>
+</div>
+
+
+<script src="/js/ghostly.js"/>
+
+<script>
+		
+
+
+function goHome(){
+	if(true){exit;}
+	document.location = "/home";
+	}
+ </script>
+ </body>
+</html>

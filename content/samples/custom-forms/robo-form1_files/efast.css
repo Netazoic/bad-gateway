@@ -1,0 +1,356 @@
+body {
+	padding: 5px;
+	margin: 0px;
+	background-color:#ffffff;
+}
+img {border:0}
+.breadcrumbs {color:#9d102d; font-size:10px;}
+A.breadcrumbs { color:#9d102d; font-size:10px; }
+A.breadcrumbs:hover { background-color:#9d102d; color:#fff; }
+A.footerLinks {
+	font-size:10px;
+	color:#567fa7;
+  }
+A.footerLinks:hover {
+	color:#ba354e;
+  }
+A.leftNavLink {
+    font-family:verdana,sans-serif;
+	font-size:12px;
+	font-weight:bold;
+    display:block;
+	color:#fff;
+	text-decoration:none;
+	text-align:right;
+	padding-right:10px;
+	line-height:20px;
+    word-spacing:-0.05em;	
+  }
+  
+  
+A.leftNavLink:hover {
+	display:block;
+	background-color:#fff;
+    font-family:verdana,sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	color:#990033;
+	text-decoration:none;
+	text-align:right;
+	padding-right:10px;
+	line-height:20px;
+    word-spacing:-0.05em;	
+  }
+
+A.leftNavSub1 {
+    font-family:verdana,sans-serif;
+	font-size:12px;
+	font-weight:bold;
+    display:block;
+	color:#fff;
+	text-decoration:none;
+	text-align:right;
+	padding-right:15px;
+	line-height:20px;
+    word-spacing:-0.05em;	
+  }
+ A.leftNavSub1:hover {
+	display:block;
+	background-color:#fff;
+    font-family:verdana,sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	color:#990033;
+	text-decoration:none;
+	text-align:right;
+	padding-right:15px;
+	line-height:20px;
+    word-spacing:-0.05em;	
+  }
+A.leftNavSub2 {
+    font-family:verdana,sans-serif;
+	font-size:12px;
+	font-weight:bold;
+    display:block;
+	color:#fff;
+	text-decoration:none;
+	text-align:right;
+	padding-right:20px;
+	line-height:20px;
+    word-spacing:-0.05em;	
+  }
+ A.leftNavSub2:hover {
+	display:block;
+	background-color:#fff;
+    font-family:verdana,sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	color:#990033;
+	text-decoration:none;
+	text-align:right;
+	padding-right:20px;
+	line-height:20px;
+    word-spacing:-0.05em;	
+  }
+A.leftNavSub3 {
+    font-family:verdana,sans-serif;
+	font-size:12px;
+	font-weight:bold;
+    display:block;
+	color:#fff;
+	text-decoration:none;
+	text-align:right;
+	padding-right:25px;
+	line-height:12px;
+     word-spacing:-0.05em;
+  }
+ A.leftNavSub3:hover {
+	display:block;
+	background-color:#fff;
+    font-family:verdana,sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	color:#990033;
+	text-decoration:none;
+	text-align:right;
+	padding-right:25px;
+	line-height:12px;
+    word-spacing:-0.05em;	
+  }
+ 
+ h1 {
+	color:#003333;
+	font-family:verdana,sans-serif;
+	font-size:14px;
+	font-weight:bold;
+	line-height:1;
+	text-align:left;
+	
+ }
+
+.container { 
+	float:left;
+	margin-left: 15px;
+	text-align:left;
+	
+}  
+.bodyCopy {
+color:#003333;
+font-family:verdana,sans-serif;
+font-size:11px;
+line-height:18px;
+text-decoration:none;
+word-spacing:-0.05em;
+}
+/* this resets the line height for input elements where the bodyCopy style is used to prevent 'jumping' of text */
+input {  line-height:normal !important; }
+
+A.bodyCopy { color:#567fa7; }
+
+A.bodyCopy:hover { color:#ba354e; }
+
+.bodyCopyBold {
+color:#333333;
+font-family:verdana,sans-serif;
+font-size:11px;
+font-weight:bold;
+line-height:14px;
+text-decoration:none;
+word-spacing:-0.05em;
+}
+
+A.bodyCopyBold { color:#567fa7; }
+
+A.bodyCopyBold:hover { color:#ba354e; }
+
+.blackArial14px {
+font-family:verdana,sans-serif;
+font-size:14px;
+font-weight:bold;
+color:#003333;
+line-height:22px;
+}
+.blackArial13px {
+font-family:verdana,sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	color: #333333;
+	line-height:16px;
+}
+.whiteArial13px {
+font-family:verdana,sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	color: #fff;
+	line-height:16px;
+	
+}
+.smallCopy {
+color:#003333;
+font-family:verdana,sans-serif;
+font-size:10px;
+line-height:13px;
+text-decoration:none;
+word-spacing:-0.05em;
+}
+.status{
+	color:black;
+	/*background-image:url(/images/statusGrey.jpg);*/
+	background-repeat:repeat-x;
+	height:19px;
+	float:left;
+	width:100px;
+	padding:4px;
+	font-family:verdana,sans-serif;
+	font-size:11px;
+	font-weight:normal;
+	text-decoration:none;
+	word-spacing:-0.05em;
+	/* following line turns all statuses gold/yellow in IE */
+	/*filter:progid:DXImageTransform.Microsoft.Gradient(endColorstr='#999933', startColorstr='#f1ef3c', gradientType='0'*/
+	);
+}
+.status.EXEMPT{
+	color:black;
+	background-image:url(/images/statusNP.jpg);
+	background-color:#999999;	
+}
+
+.status.NP{
+	color:black;
+	background-image:url(/images/statusNP.jpg);
+	background-color:#999999;	
+}
+.status.STRT{
+	color:black;
+	background-image:url(/images/statusStarted.jpg);
+	background-color:#999933;
+}
+.status.SBMT{
+	color:black;
+	background-image:url(/images/statusSubmitted.jpg);
+	background-color:#3483a9;
+}
+
+.status.PRTCPT{
+	color:black;
+	background-image:url(/images/statusPrtcpt.jpg);
+	background-color:#48a934;
+}
+.status.HOLD{
+	color:black;
+	background-image:url(/images/statusHold.jpg);
+	background-color:#b45329;
+}
+.status.ERR{
+	color:white;
+	background-color:red;
+}
+	
+.msgTable { border-bottom:#e0e0e0 1px solid; font-family:verdana,sans-serif; padding:2px; }
+.hdr { background-image: url(/images/tblHeaderBackground.gif); background-repeat: repeat-x; border-bottom:#999 1px solid; vertical-align: middle; padding: 6px; font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight:bold; color: #003333;}
+
+th {
+	background-color:#990033;
+	vertical-align: middle;
+	padding: 6px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	color: #fff;
+}
+
+.tabledata {
+	vertical-align: middle;
+	padding: 6px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #333333;
+}
+
+#popup{
+      position: absolute;
+      visibility: hidden;
+      overflow: hidden;
+      border:1px solid #CCC;
+      background-color:#F9F9F9;
+      border:1px solid #333;
+      padding:5px;
+      z-index:1;
+ }
+    
+#regform td {
+	text-align:right;
+}
+#regForm input {
+	float:left;
+	margin-left:20px;
+color:#003333;
+font-family:verdana,sans-serif;
+font-size:11px;
+line-height:18px;
+text-decoration:none;
+word-spacing:-0.05em;
+	
+}
+#regForm select {
+	float:left;
+	margin-left:20px;
+	color:#003333;
+font-family:verdana,sans-serif;
+font-size:11px;
+line-height:18px;
+text-decoration:none;
+word-spacing:-0.05em;
+}
+#instructionBox {
+width:80%;
+border:#666666 1px dashed;
+background-color:#efefef;
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:10px;
+}
+#instructionBox td{
+padding:6px;
+}
+#instructTxt { background-color:#fafafa;  border-left-color:#89929d;border-top-color: #5b6168;border-right-color:#e1edfa;border-bottom-color:#e9f2fc;border-width: 2px; border-style: solid; display:none; margin-left:-2px;margin-right:-2px;margin-bottom:-2px; padding:10px; }
+#gridTxt { background-color:#cccccc; border-left-color:#89929d;border-top-color: #5b6168;border-right-color:#e1edfa;border-bottom-color:#e9f2fc;border-width: 2px; border-style: solid; padding:10px; 
+filter:progid:DXImageTransform.Microsoft.Gradient(endColorstr='#cccccc', startColorstr='#efefef', gradientType='0');
+}
+#PLOPTxt { background-color:#fff; display:none; }
+
+.efast .dijitTextBox,
+.efast .dijitNumberTextBox,
+.efast .dijitCurrencyTextBox,
+.efast .dijitTimeTextBox input {
+
+	background:#fff;
+	border:1px solid #a5acb2;
+	color:#000;
+	line-height:18px;
+	font-family:verdana,sans-serif;
+	font-size:11px;
+	width:144px;
+}
+.efastDisabled .dijitTextBoxDisabled,
+.efastDisabled .dijitComboBoxDisabled,
+.efastDisabled .dijitSpinnerDisabled,
+.efastDisabled .dijitInlineEditorDisabled input {
+
+	background:#ebebe4;
+	border:1px solid #a5acb2;
+	color:#aca899;
+	line-height:18px;
+	font-family:verdana,sans-serif;
+	font-size:11px;
+	width:144px;
+}
+.partMgrHdr { background-color:#999999; background-image:url(/images/statusNP.jpg); background-repeat:repeat-x; color:#fff; font-size:13px; font-weight:bold; padding:5px; text-align:center; width:70px; }
+.partMgrCell { font-size:10px; text-align:center; width:70px;  }
+.logMgrHdr { background-color:#999999; background-image:url(/images/statusNP.jpg); background-repeat:repeat-x; color:#fff; font-size:13px; font-weight:bold; padding:5px; text-align:center; width:70px; }
+.logMgrCell { font-size:10px; padding:3px; text-align:center; vertical-align:top;  }
+.hidden-label {
+left: -999em;  
+position: absolute;
+top: auto;
+}
