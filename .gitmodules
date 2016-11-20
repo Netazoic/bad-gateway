@@ -3,4 +3,8 @@
 	url = git@github.com:/Netazoic/fc-evtmgr
 [submodule "lib/njs"]
 	path = lib/njs
-	url = git@github.org:/Netazoic/njs
+	url = git@github.com:/Netazoic/njs
+[submodule "content/themes/casper"]
+        path = content/themes/casper
+        url = https://github.com/TryGhost/Casper.git
+
